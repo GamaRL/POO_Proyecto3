@@ -225,7 +225,7 @@ public class OrdenMesa extends JPanel {
       return;
 
     if (mesa.getOrden() == null) {
-      mesa.setOrden(new Orden(usuario));
+      mesa.setOrden(new Orden(usuario, mesa.getNumeroMesa() ));
 
       int index = restaurante.getMesas().indexOf(mesa);
       restaurante.getMesas().get(index).ocupar();

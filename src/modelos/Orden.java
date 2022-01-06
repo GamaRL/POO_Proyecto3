@@ -18,15 +18,22 @@ public class Orden implements Serializable {
      * Usuario/Servidor/Mesero que atenderá la orden a realizar 
      */
     private Usuario servidor;
+    /**
+     * Platillos de la orden
+     */
     private Map<Platillo, Integer> platillos;
+    /**
+     * Mesa de la orden
+     */
+    private int mesa;
 /**
  * Constructor de la clase 
  * 
  * @param servidor  Usuario/Mesero que estará atendiendo la orden 
  */
-    public Orden ( Usuario servidor ) {
+    public Orden ( Usuario servidor, int mesa ) {
         this.id = UUID.randomUUID();
-
+        this.mesa = mesa;
         this.servidor = servidor;
         platillos = new LinkedHashMap<>();
     }
@@ -88,5 +95,12 @@ public class Orden implements Serializable {
         if ( platillo == null )
             return;
         platillos.remove( platillo );
+    }
+
+    /**
+     * Método que devuelve el atributo 'mesa'
+     */
+    public int getNumMesa() {
+        return mesa;
     }
 }
