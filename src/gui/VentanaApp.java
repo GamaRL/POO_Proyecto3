@@ -55,6 +55,11 @@ public class VentanaApp extends JFrame {
   private FormularioMesero formulario;
 
   /**
+   * La vista asociada de ventas
+   */
+  private Ventas ventas;
+
+  /**
    * El restaurante asociado a la aplicación
    */
   private Restaurante restaurante;
@@ -175,7 +180,17 @@ public class VentanaApp extends JFrame {
 
       panel.addTab("Usuarios", adminIcon, panelUsuarios);
 
-      panel.addTab("Ventas", adminIcon, new Ventas(restaurante));
+      ventas = new Ventas(restaurante);
+
+      panel.addTab("Ventas", adminIcon, ventas);
+
+      panel.addChangeListener(e -> {
+        Usuario u = VentanaApp.getInstancia().getUsuario();
+
+        if (u.esAdmin() && panel.getSelectedIndex() == 2) {
+          ventas.crearComponentes();
+        }
+      });
     }
     
 
@@ -183,6 +198,10 @@ public class VentanaApp extends JFrame {
     panel.add("Logout", new Logout());
 
     setSize(600, 400);
+  }
+
+  public Usuario getUsuario() {
+    return usuario;
   }
 
   /**
