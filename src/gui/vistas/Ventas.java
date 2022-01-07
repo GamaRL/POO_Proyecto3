@@ -11,6 +11,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import estadisticas.AnalizadorEst;
 import modelos.Restaurante;
 import modelos.Ticket;
 import modelos.usuarios.Usuario;
@@ -44,46 +45,7 @@ public class Ventas extends JTabbedPane {
     crearComponentes();
   }
 
-  public Map<Usuario, Double> getEstadisticasUsuarios() {
-    Map<Usuario, Double> ventasMesero = new LinkedHashMap<>();
-
-    List<Usuario> usuarios = RepositorioUsuarios.getUsuarios();
-
-    total = 0;
-
-    for (Usuario u : usuarios) {
-      ventasMesero.put(u, 0.0);
-    }
-
-    for (Ticket t : restaurante.getTickets()) {
-      Usuario u = t.getOrden().getServidor();
-      double avg = t.getTotal() + ventasMesero.get(u);
-
-      ventasMesero.put(u, avg);
-      total += avg;
-    }
-
-    return ventasMesero;
-  }
-
-  public Map<Integer, Double> getEstadisticasMesas() {
-    Map<Integer, Double> ventasMesa = new LinkedHashMap<>();
-
-    int numMesas = restaurante.getMesas().size();
-
-    for (int i = 1; i <= numMesas; i++) {
-      ventasMesa.put(i, 0.0);
-    }
-
-    for (Ticket t : restaurante.getTickets()) {
-      int numMesa = t.getOrden().getNumMesa();
-      double avg = t.getTotal() + ventasMesa.get(numMesa);
-
-      ventasMesa.put(numMesa, avg);
-    }
-
-    return ventasMesa;
-  }
+  
 
   /**
    * Método que realiza la creación de los componentes y características que tiene
@@ -93,8 +55,10 @@ public class Ventas extends JTabbedPane {
 
     removeAll();
 
-    Map<Usuario, Double> ventasMesero = getEstadisticasUsuarios();
-    Map<Integer, Double> ventasMesa = getEstadisticasMesas();
+    Map<Usuario, Double> ventasMesero = AnalizadorEst.getEstadisticasUsuarios(restaurante);
+    Map<Integer, Double> ventasMesa = AnalizadorEst.getEstadisticasMesas(restaurante);
+
+    total = AnalizadorEst.getTotalDinero();
 
     JTable tablaMeseros = new JTable();
     DefaultTableModel modeloMeseros = new DefaultTableModel() {
