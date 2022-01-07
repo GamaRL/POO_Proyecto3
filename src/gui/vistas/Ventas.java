@@ -18,8 +18,8 @@ import repositorio.RepositorioUsuarios;
 
 /**
  * Clase que tiene los métodos correspondientes para mostrar las ventas
- * realizadas en el restaurante
- * Hereda de JPanel para uitlizar los métodos/funcionalidades de una vista
+ * realizadas en el restaurante. Hereda de JPanel para uitlizar los
+ * métodos/funcionalidades de una vista
  * gráfica
  */
 public class Ventas extends JTabbedPane {
@@ -118,7 +118,6 @@ public class Ventas extends JTabbedPane {
 
     JScrollPane panelMeseros = new JScrollPane(tablaMeseros);
     panelMeseros.setPreferredSize(new Dimension(500, 200));
-
 
     JTable tablaMesas = new JTable();
     DefaultTableModel modeloMesas = new DefaultTableModel() {
