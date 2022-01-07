@@ -193,9 +193,15 @@ public class VentanaApp extends JFrame {
       });
     }
     
-
-    panel.add("Estadísticas", new Estadisticas(restaurante));
+    Estadisticas estadisticas = new Estadisticas(restaurante);
+    panel.add("Estadísticas", estadisticas);
     panel.add("Logout", new Logout());
+    
+    panel.addChangeListener(e -> {
+      if ( panel.getTabCount() - panel.getSelectedIndex() == 2 ) {
+        estadisticas.crearComponentes();
+      }
+    });
 
     setSize(600, 400);
   }
