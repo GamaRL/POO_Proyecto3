@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JOptionPane;
 
@@ -63,7 +64,7 @@ public class Ticket implements Serializable {
         try {
            // private static final String ruta1 = new File("archivos/").getAbsolutePath();
           //TODO: Incluir fecha y hora en el nombre del archivo
-          BufferedWriter escritor = new BufferedWriter( new FileWriter( new File("tickets/" /*+ fechaHora.toString()*/ + "(" + orden.getId() + ").txt" ) ) );
+          BufferedWriter escritor = new BufferedWriter( new FileWriter( new File("tickets/" + fechaHora.format( DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss") ) + " (" + orden.getId() + ").txt" ) ) );
           escritor.append(String.valueOf(fechaHora.toString() + "\n"));
           escritor.append(String.valueOf("Orden: "+ orden.getId()) + "\n");
           escritor.append(String.valueOf("Servidor: "+ orden.getServidor().getNombre()) + "\n");

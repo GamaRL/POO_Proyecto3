@@ -32,6 +32,10 @@ public class Main {
             ManejadorRestaurante.reescribirArchivo();
         }
 
+        if (!new File("tickets/").exists()) {
+            new File("tickets/").mkdir();
+        }
+
         var restaurante = RepositorioRestaurante.getRestaurante();
 
         ejecutarAplicacion(restaurante);
