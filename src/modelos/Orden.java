@@ -12,18 +12,22 @@ import modelos.usuarios.Usuario;
  * Serializable
  */
 public class Orden implements Serializable {
+
     /**
      * ID de la orden
      */
     private UUID id;
+
     /**
      * Usuario/Servidor/Mesero que atenderá la orden a realizar
      */
     private Usuario servidor;
+
     /**
      * Platillos de la orden
      */
     private Map<Platillo, Integer> platillos;
+
     /**
      * Mesa de la orden
      */
@@ -32,7 +36,7 @@ public class Orden implements Serializable {
     /**
      * Constructor de la clase
      * 
-     * @param servidor Usuario/Mesero que estará atendiendo la orden
+     * @param servidor Administrador/Mesero que estará atendiendo la orden
      */
     public Orden(Usuario servidor, int mesa) {
         this.id = UUID.randomUUID();
@@ -42,14 +46,12 @@ public class Orden implements Serializable {
     }
 
     /**
-     * Método que agrega los platillos en el Map de platillos, junto con su cantidad
-     * adecuada
+     * Método de acceso de consulta para el atributo 'id' de la orden
      * 
-     * @param platillo
+     * @return el 'id' de la orden
      */
-    public void agregarPlatillo(Platillo platillo) {
-        Integer n = platillos.get(platillo);
-        platillos.put(platillo, n == null ? 1 : n + 1);
+    public UUID getId() {
+        return id;
     }
 
     /**
@@ -62,22 +64,19 @@ public class Orden implements Serializable {
     }
 
     /**
-     * Método de acceso al número de platillos
-     * 
-     * @param platillo de la orden
-     * @param valor    la cantidad de platillos
-     */
-    public void setNumDePlatillo(Platillo platillo, int valor) {
-        platillos.put(platillo, valor);
-    }
-
-    /**
      * Método de acceso al servidor que toma la orden respectiva
      * 
      * @return servidor
      */
     public Usuario getServidor() {
         return servidor;
+    }
+
+    /**
+     * Método que devuelve el atributo 'mesa'
+     */
+    public int getNumMesa() {
+        return mesa;
     }
 
     /**
@@ -94,12 +93,24 @@ public class Orden implements Serializable {
     }
 
     /**
-     * Método de acceso de consulta para el atributo 'id' de la orden
+     * Método que agrega los platillos en el Map de platillos, junto con su cantidad
+     * adecuada
      * 
-     * @return el 'id' de la orden
+     * @param platillo
      */
-    public UUID getId() {
-        return id;
+    public void agregarPlatillo(Platillo platillo) {
+        Integer n = platillos.get(platillo);
+        platillos.put(platillo, n == null ? 1 : n + 1);
+    }
+
+    /**
+     * Método de acceso al número de platillos
+     * 
+     * @param platillo de la orden
+     * @param valor    la cantidad de platillos
+     */
+    public void setNumDePlatillo(Platillo platillo, int valor) {
+        platillos.put(platillo, valor);
     }
 
     /**
@@ -111,12 +122,5 @@ public class Orden implements Serializable {
         if (platillo == null)
             return;
         platillos.remove(platillo);
-    }
-
-    /**
-     * Método que devuelve el atributo 'mesa'
-     */
-    public int getNumMesa() {
-        return mesa;
     }
 }
