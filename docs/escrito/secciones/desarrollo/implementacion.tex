@@ -106,8 +106,8 @@ Para el caso específico de esta clase, se establecieron diversos métodos de
 acceso de consulta para cada uno de los atributos. No se implementaron métodos 
 de acceso de modificación ya que no se requiere de la funcionalidad ``editar 
 información del restaurante''. Se implementó el método \texttt{agregarTicket},
-a través del cual se agrega un ticket a la lista de tickets del restaurante. Es 
-importante mencionar que no se agregó directamente un método para ``agregar 
+a través del cual se agrega un ticket a la lista de tickets del restaurante.  
+Es importante mencionar que no se agregó directamente un método para ``agregar 
 platillos'' ya que como tal, en el requerimiento del programa no se considera 
 la funcionalidad de modificar platillos en el restaurante.
 
@@ -122,5 +122,64 @@ puede almacenar de manera sencilla un sólo objeto, lo cual nos convenía por
 lo expuesto anteriormente. Entonces, fue importante marcar la clase 
 \texttt{Restaurante} como \texttt{Serializable} haciendo que implementara 
 dicha interfaz.
+
+\paragraph{\texttt{Platillo}. } Esta clase es la encargada de representar y 
+almacenar la información referente los productos que se venden en el 
+restaurante. A través de esta clase, se puede representar a platillos como:
+\textit{Arroz}, \textit{Sopa de Verduras}, \textit{Enchiladas} o incluso algo 
+como un \textit{Agua de Frutas} o un \textit{Refresco}. La clase en sí tiene 
+los siguientes atributos:
+
+\begin{itemize}
+  \item \texttt{id}: Representa un identificador único que identificará al 
+    platillo. Este atributo tiene el tipo de dato \texttt{java.util.UUID}, que 
+    ya incluye toda la lógica para generar valores únicos a través del método 
+    \texttt{randomUUID}.
+  \item \texttt{nombre}: El nombre con el que se identificará al platillo.
+  \item \texttt{precio}: Un número que indica el precio (en pesos mexicanos) 
+    del platillo.
+  \item \texttt{descripcion}: Un mensaje breve que indica alguna característica 
+    del platillo (horario de disponibilidad, si está picoso, etc.).
+\end{itemize}
+
+con ayuda de los cuales es posible implementar las diversas funcionalidades que 
+se solicitan dentro del proyecto.
+
+Nuevamente, se vuelve indispensable tener en cuenta que como no se solicitó la 
+funcionalidad de ``modificar platillos'', entoces se decidió no implementar los 
+métodos de acceso de modificación para los objetos de esta clase. Los únicos 
+métodos de acceso que se implementaron fueron los de consulta ---mejor conocidos
+como \textit{\textbf{getters}}---.
+
+Para efectos del programa, fue necesari sobre-excribir el método \texttt{toString} 
+a través del cual se puede convertir el objeto a una cadena (\texttt{String}) 
+legible para una persona. Lo que se hizo fue retornar únicamente el nombre del 
+platillo en cuestión.
+
+\paragraph{\texttt{Mesa}.} Se trata de la abstracción que se tiene de una mesa en 
+un restaurante. Los atributos que define son:
+\begin{itemize}
+  \item \texttt{numMesa}: El número asociado con la mesa en el restaurante.
+  \item  \texttt{ocupada}: Un \textit{booleano} que indica si una mesa está ocupada
+    o no.
+  \item \texttt{orden}: Un objeto de la clase \texttt{Orden}, a través del cual se 
+    almacena la información relacionada con la orden de la mesa.
+\end{itemize}
+
+Nuevamente, se definieron los \textit{\textbf{getters}} para los atributos de la 
+clase; sin embargo, también se definieron los siguientes métodos adicionales:
+\begin{itemize}
+  \item \texttt{setOrden}: Se trata del método de acceso de modificación para el 
+    atributo \texttt{orden}.
+  \item \texttt{borrarOrden}: Hace que la orden sea nula.
+  \item \texttt{ocupar} y \texttt{desocupar}: Ambos conforman los métodos de acceso 
+    de modificación para el atributo \texttt{ocupada}.
+\end{itemize}
+
+\paragraph{\texttt{Orden}.} Se trata de la clase que se encarga de abstraer la orden 
+de una de las mesas del restaurante.
+
+\paragraph{\texttt{Ticket}.} Se trata de la clase que se encarga de abstraer el 
+ticket que se genera después de cerrar una orden.
 
 \pagebreak
