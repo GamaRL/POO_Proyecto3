@@ -171,7 +171,7 @@ public class VentanaApp extends JFrame {
       ImageIcon adminIcon = new ImageIcon(new ImageIcon("imagenes/adminIcon.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
 
       buscador = new AdministracionUsuarios(restaurante, usuario);
-      formulario = new FormularioMesero(restaurante);
+      formulario = new FormularioMesero();
 
       panelUsuarios.add(buscador);
       panelUsuarios.add(formulario);

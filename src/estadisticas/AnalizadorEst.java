@@ -45,7 +45,6 @@ public abstract class AnalizadorEst {
     }
 
     for (Ticket t : restaurante.getTickets()) {
-      Usuario u = t.getOrden().getServidor();
       int numPlatillos = 0;
       Map<Platillo, Integer> platillos = t.getOrden().getPlatillos();
       for (Platillo p : platillos.keySet()) {
@@ -84,5 +83,4 @@ public abstract class AnalizadorEst {
   public static int getTotalPlatillos () {
     return totalPlatillos;
   }
-
 }

@@ -18,14 +18,12 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import gui.VentanaApp;
-import modelos.Restaurante;
 import modelos.usuarios.Mesero;
 import modelos.usuarios.Usuario;
 import repositorio.RepositorioUsuarios;
 
 public class FormularioMesero extends JPanel {
 
-  private Restaurante restaurante;
   private Usuario usuario;
   private boolean editar;
 
@@ -45,8 +43,7 @@ public class FormularioMesero extends JPanel {
    *
    * @param restaurante el restaurante asociado al formulario
    */
-  public FormularioMesero(Restaurante restaurante) {
-    this.restaurante = restaurante;
+  public FormularioMesero() {
     this.editar = false;
 
     crearComponentes();

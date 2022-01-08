@@ -2,8 +2,6 @@ package gui.vistas;
 
 import java.awt.Dimension;
 import java.text.DecimalFormat;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.swing.JScrollPane;
@@ -13,9 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 import estadisticas.AnalizadorEst;
 import modelos.Restaurante;
-import modelos.Ticket;
 import modelos.usuarios.Usuario;
-import repositorio.RepositorioUsuarios;
 
 /**
  * Clase que tiene los métodos correspondientes para mostrar las ventas
