@@ -10,7 +10,8 @@ import java.util.Set;
 import repositorio.RepositorioRestaurante;
 
 /**
- * Clase que lleva a la abstracción de un restaurante, implementa a la interface Serializable 
+ * Clase que lleva a la abstracción de un restaurante, implementa a la interface
+ * Serializable para facilitar su almacenamiento en un archivo de objetos.
  */
 public class Restaurante implements Serializable {
 
@@ -29,7 +30,6 @@ public class Restaurante implements Serializable {
    */
   private Set<Platillo> platillos;
 
-
   /**
    * Los tickets generados
    */
@@ -38,8 +38,8 @@ public class Restaurante implements Serializable {
   /**
    * Constructor de la clase
    * 
-   * @param nombre del restaurante 
-   * @param Mesas del  restaurante 
+   * @param nombre del restaurante
+   * @param Mesas  del restaurante
    */
   public Restaurante(String nombre, int numMesas) {
     this.nombre = nombre;
@@ -90,12 +90,22 @@ public class Restaurante implements Serializable {
     return platillos.add(platillo);
   }
 
+  /**
+   * Agrega un ticket al registro del restaurante.
+   * 
+   * @param ticket el ticket a almacenar.
+   */
   public void agregarTicket(Ticket ticket) {
-    tickets.add( ticket );
-    RepositorioRestaurante.guardar( this );
+    tickets.add(ticket);
+    RepositorioRestaurante.guardar(this);
   }
 
-  public List<Ticket> getTickets () {
+  /**
+   * Método de acceso de consulta para los tickets del restaurante.
+   * 
+   * @return una lista con los tickets.
+   */
+  public List<Ticket> getTickets() {
     return tickets;
   }
 }
