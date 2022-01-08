@@ -7,8 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import repositorio.Repositorio;
 import repositorio.RepositorioRestaurante;
+
 /**
  * Clase que lleva a la abstracción de un restaurante, implementa a la interface Serializable 
  */
