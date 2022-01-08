@@ -9,7 +9,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.JOptionPane;
-
+/**
+ * Clase que cumple con las funciones de la generación de un ticket. 
+ */
 public class Ticket implements Serializable {
 
     /**
@@ -46,9 +48,16 @@ public class Ticket implements Serializable {
      * Si se pagó con efectivo o fue un pago con tarjeta
      */
     private boolean esPagoConEfectivo;
-
+/**
+ * La hora y fecha del ticket generado
+ */
     private LocalDateTime fechaHora;
-
+/**
+ * Constructor de la clase ticket 
+ * @param mesa que tiene las órdenes a registrar
+ * @param propina monto dado por el usuario 
+ * @param esPagoConEfectivo la forma de pago 
+ */
     public Ticket( Mesa mesa, double propina, boolean esPagoConEfectivo) {
         this.propina = propina;
         this.mesa = mesa.getNumeroMesa();
@@ -59,14 +68,15 @@ public class Ticket implements Serializable {
         fechaHora = LocalDateTime.now();
         generarTicket();
     }
-
+/**
+ * Se encarga de guardar en un archivo de texto los datos relacionados con el ticket para así tener la 
+ * información recopilada.
+ */
     private void generarTicket () {
         try {
-           // private static final String ruta1 = new File("archivos/").getAbsolutePath();
-          //TODO: Incluir fecha y hora en el nombre del archivo
           BufferedWriter escritor = new BufferedWriter( new FileWriter( new File("tickets/" + fechaHora.format( DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss") ) + " (" + orden.getId() + ").txt" ) ) );
           escritor.append(String.valueOf(fechaHora.toString() + "\n"));
-          escritor.append(String.valueOf("Orden: "+ orden.getId()) + "\n");
+          escritor.append(String.valueOf("Orden: "+ orden.getId() + "\n"));
           escritor.append(String.valueOf("Servidor: "+ orden.getServidor().getNombre()) + "\n");
           escritor.append(String.valueOf("Mesa: " + mesa) + "\n");
           escritor.append(String.valueOf("Platillo: "+ orden.getPlatillos()) + "\n");
@@ -79,23 +89,38 @@ public class Ticket implements Serializable {
             e.printStackTrace();
         }
     }
-
+/**
+ * Método de acceso para lectura del IVA
+ * @return iva monto que se le asignó por defecto como IVA
+ */
     public static double getIva() {
         return iva;
     }
-
+/**
+ * Método de acceso para lectura de la propina proporcionada por el cliente
+ * @return propina 
+ */
     public double getPropina() {
         return propina;
     }
-
+/**
+ * Método de acceso de lectura de la orden del cliente 
+ * @return orden almacenada en la mesa 
+ */
     public Orden getOrden() {
         return orden;
     }
-
+/**
+ * Método de acceso de lectura del total a pagar al finalizar la orden 
+ * @return total monto en pesos del total a pagar 
+ */
     public double getTotal() {
         return total;
     }
-
+/**
+ * Método de acceso de lectura de la forma de pago 
+ * @return isEsPagoConEfectivo forma de pago (tarjeta/efectivo)
+ */
     public boolean isEsPagoConEfectivo() {
         return esPagoConEfectivo;
     }    

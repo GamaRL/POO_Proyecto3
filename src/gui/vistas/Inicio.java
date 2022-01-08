@@ -15,6 +15,9 @@ import modelos.Mesa;
 import modelos.Restaurante;
 import modelos.usuarios.Usuario;
 
+/**
+ * Clase que funge como primera ventana principal del sistema del restaurante
+ */
 public class Inicio extends JPanel {
 
   /**
@@ -23,7 +26,7 @@ public class Inicio extends JPanel {
   private Restaurante restaurante;
 
   /**
-   * 
+   * La orden asociada a una mesa
    */
   private OrdenMesa ordenMesa;
 
@@ -69,6 +72,10 @@ public class Inicio extends JPanel {
     crearComponentes();
   }
 
+  /**
+   * Método que realiza la creación de los componentes y características que tiene
+   * la vista gráfica
+   */
   public void crearComponentes() {
     setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
@@ -165,7 +172,10 @@ public class Inicio extends JPanel {
       } catch (IllegalArgumentException ex) {
       }
     }
-
+    /**
+     * Permite mostrar algunos componentes de acuerdo a si existen o no elementos
+     * dentro de la lista del comboMesa
+     */
     if (comboMesa.getItemCount() == 0) {
       comboMesa.setVisible(false);
       noItems.setVisible(true);

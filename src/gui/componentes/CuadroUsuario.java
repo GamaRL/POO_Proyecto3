@@ -13,7 +13,8 @@ import gui.vistas.AdministracionUsuarios;
 import modelos.usuarios.Usuario;
 
 /**
- * Clase que ayuda a mostrar las características de los usuarios asociados al programa restaurante 
+ * Clase que ayuda a mostrar las características de los usuarios asociados al
+ * programa restaurante
  * Hereda de Box para utilizar sus funcionalidades
  */
 public class CuadroUsuario extends JPanel {
@@ -34,17 +35,17 @@ public class CuadroUsuario extends JPanel {
 
         btnEditar = new JButton("Editar");
 
-        btnEditar.setBackground( new Color( 196, 193, 26 ) );
-        btnEditar.setForeground( Color.WHITE );
+        btnEditar.setBackground(new Color(196, 193, 26));
+        btnEditar.setForeground(Color.WHITE);
 
-        btnEditar.addActionListener( e -> {
+        btnEditar.addActionListener(e -> {
             ventana.limpiarFormulario();
 
             VentanaApp.getInstancia().toggleVistasUsuarios();
             VentanaApp.getInstancia().getFormulario().setUsuario(usuario);
 
             VentanaApp.getInstancia().getFormulario().cargarDatosUsuario();
-        } );
+        });
 
         add(datos);
         add(btnEditar);

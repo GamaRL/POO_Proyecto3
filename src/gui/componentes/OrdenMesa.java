@@ -29,9 +29,9 @@ class ButtonRenderer extends JButton implements TableCellRenderer {
 
   public ButtonRenderer() {
     setOpaque(true);
-    
-    setBackground( new Color( 214, 32, 32 ) );
-    setForeground( Color.WHITE );
+
+    setBackground(new Color(214, 32, 32));
+    setForeground(Color.WHITE);
   }
 
   @Override
@@ -53,7 +53,7 @@ class ButtonEditor extends DefaultCellEditor {
     super(txt);
     btn = new JButton();
     btn.setOpaque(true);
-    
+
     btn.addActionListener(e -> {
       fireEditingStopped();
     });
@@ -131,9 +131,9 @@ public class OrdenMesa extends JPanel {
 
       @Override
       public boolean isCellEditable(int row, int column) {
-        if ( !usuario.getId().equals(mesa.getOrden().getServidor().getId()) )
+        if (!usuario.getId().equals(mesa.getOrden().getServidor().getId()))
           return false;
-        return column == 2 || column == 4  ;
+        return column == 2 || column == 4;
       }
     };
 
@@ -148,16 +148,16 @@ public class OrdenMesa extends JPanel {
 
     tabla.getModel().addTableModelListener(e -> {
 
-      if (e.getColumn() != 2 && e.getColumn() != tabla.getColumnCount() - 1 )
+      if (e.getColumn() != 2 && e.getColumn() != tabla.getColumnCount() - 1)
         return;
 
       String nombre = (String) tabla.getValueAt(e.getFirstRow(), 0);
 
-      if ( e.getColumn() == tabla.getColumnCount() - 1 ) {
+      if (e.getColumn() == tabla.getColumnCount() - 1) {
         for (Platillo p : mesa.getOrden().getPlatillos().keySet()) {
 
           if (p.getNombre().equals(nombre)) {
-            ((DefaultTableModel)tabla.getModel()).removeRow(e.getFirstRow());
+            ((DefaultTableModel) tabla.getModel()).removeRow(e.getFirstRow());
             mesa.getOrden().eliminarPlatillo(p);
             break;
           }
@@ -182,7 +182,7 @@ public class OrdenMesa extends JPanel {
             }
 
             mesa.getOrden().setNumDePlatillo(p, num);
-            RepositorioRestaurante.guardar( restaurante );
+            RepositorioRestaurante.guardar(restaurante);
 
             tabla.setValueAt(num * p.getPrecio(), e.getFirstRow(), 3);
           }
@@ -195,7 +195,8 @@ public class OrdenMesa extends JPanel {
 
       Map<Platillo, Integer> platillos = mesa.getOrden().getPlatillos();
       for (Platillo platillo : platillos.keySet()) {
-        Object[] data = { platillo.getNombre(), platillo.getPrecio(), platillos.get(platillo), platillo.getPrecio() * platillos.get(platillo), "Eliminar" };
+        Object[] data = { platillo.getNombre(), platillo.getPrecio(), platillos.get(platillo),
+            platillo.getPrecio() * platillos.get(platillo), "Eliminar" };
 
         modelo.addRow(data);
       }
@@ -207,17 +208,17 @@ public class OrdenMesa extends JPanel {
     removeAll();
 
     add(panel);
-    
+
     panel.setPreferredSize(new Dimension(500, 200));
     VentanaApp.getInstancia().repaint();
   }
 
   public void agregarPlatillo(Platillo platillo) {
-    if ( platillo == null )
+    if (platillo == null)
       return;
 
     if (mesa.getOrden() == null) {
-      mesa.setOrden(new Orden(usuario, mesa.getNumeroMesa() ));
+      mesa.setOrden(new Orden(usuario, mesa.getNumeroMesa()));
 
       int index = restaurante.getMesas().indexOf(mesa);
       restaurante.getMesas().get(index).ocupar();
@@ -235,17 +236,16 @@ public class OrdenMesa extends JPanel {
   }
 
   public Ticket finalizarOrden() {
-    // Se debe eliminar las filas de la tabla, cobrar generar ticket, y desocupar la mesa
-    // tabla.removeRowSelectionInterval(0, tabla.getRowCount() - 1);
-    ((DefaultTableModel)tabla.getModel()).setRowCount(0);
+    ((DefaultTableModel) tabla.getModel()).setRowCount(0);
     double propina;
     try {
-      propina = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese la propina", "Propina", JOptionPane.QUESTION_MESSAGE));
-    }
-    catch(NumberFormatException e){
+      propina = Double.parseDouble(
+          JOptionPane.showInputDialog(null, "Ingrese la propina", "Propina", JOptionPane.QUESTION_MESSAGE));
+    } catch (NumberFormatException e) {
       propina = 0;
     }
-    return usuario.finalizarOrden(mesa, propina, JOptionPane.showConfirmDialog(null, "¿Pago en efectivo?", "Método de pago", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION );
+    return usuario.finalizarOrden(mesa, propina, JOptionPane.showConfirmDialog(null, "¿Pago en efectivo?",
+        "Método de pago", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION);
   }
 
   public void setMesa(Mesa mesa) {

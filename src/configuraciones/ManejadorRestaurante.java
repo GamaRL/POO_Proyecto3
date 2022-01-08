@@ -10,7 +10,8 @@ import modelos.Restaurante;
 import repositorio.Repositorio;
 
 /**
- * Clase que contiene la configuración inicial para crear un archivo que contenga la
+ * Clase que contiene la configuración inicial para crear un archivo que
+ * contenga la
  * información del restaurante (nombre, número de mesas y platillos).
  */
 public class ManejadorRestaurante {
