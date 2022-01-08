@@ -11,17 +11,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 import modelos.usuarios.Usuario;
+
 /**
- * Clase que genera el repositorio de los usuarios creados por defecto, escribe los usuarios en un archivo de objetos
+ * Clase que genera el repositorio de los usuarios creados por defecto, escribe
+ * los usuarios en un archivo de objetos
  */
 public class RepositorioUsuarios {
 
     public static List<Usuario> getUsuarios() {
         List<Usuario> usuarios = new LinkedList<>();
         File ruta = new File(new File(Repositorio.getRuta()), Repositorio.ARCHIVO_USUARIOS);
-/**
- * Manejo de excepciones para el uso de los archivos de los objetos 
- */
+        /**
+         * Manejo de excepciones para el uso de los archivos de los objetos
+         */
         try (ObjectInputStream s = new ObjectInputStream(new FileInputStream(ruta))) {
 
             Usuario usuario = null;
@@ -38,24 +40,27 @@ public class RepositorioUsuarios {
         }
         return usuarios;
     }
-/**
- * Método que genera a los usuarios creados dentro de la "aplicación creada del restaurante"
- * @param usuarios creados por el administrador 
- * @param usuario  lista en la que se debe verificar la exitencia del usuario 
- * @param nuevo parámetro para indicar que se ha creado un nuevo usuario 
- */
-    public static void udpateUsuario( List<Usuario> usuarios, Usuario usuario, boolean nuevo) {
+
+    /**
+     * Método que genera a los usuarios creados dentro de la "aplicación creada del
+     * restaurante"
+     * 
+     * @param usuarios creados por el administrador
+     * @param usuario  lista en la que se debe verificar la exitencia del usuario
+     * @param nuevo    parámetro para indicar que se ha creado un nuevo usuario
+     */
+    public static void udpateUsuario(List<Usuario> usuarios, Usuario usuario, boolean nuevo) {
         try {
             /**
-             * Manejo de excepciones para el uso de archivos de los usuarios creados 
+             * Manejo de excepciones para el uso de archivos de los usuarios creados
              */
             File ruta = new File(new File(Repositorio.getRuta()), Repositorio.ARCHIVO_USUARIOS);
-            ObjectOutputStream s = new ObjectOutputStream( new FileOutputStream(ruta) );
-            for ( Usuario u : usuarios) {
-                s.writeObject( !nuevo && usuario.getId().equals(u.getId()) ? usuario : u );
+            ObjectOutputStream s = new ObjectOutputStream(new FileOutputStream(ruta));
+            for (Usuario u : usuarios) {
+                s.writeObject(!nuevo && usuario.getId().equals(u.getId()) ? usuario : u);
             }
-            if ( nuevo )
-                s.writeObject( usuario );
+            if (nuevo)
+                s.writeObject(usuario);
             s.close();
         } catch (IOException e) {
             e.printStackTrace();

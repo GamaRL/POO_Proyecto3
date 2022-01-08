@@ -22,20 +22,62 @@ import modelos.usuarios.Mesero;
 import modelos.usuarios.Usuario;
 import repositorio.RepositorioUsuarios;
 
+/**
+ * Clase que realiza el diseño del panel a mostrar asociado a los datos que
+ * contiene un mesero
+ */
 public class FormularioMesero extends JPanel {
-
+  /**
+   * Usuario a del cuál se obtendrá su información a recopilar
+   */
   private Usuario usuario;
+  /**
+   * Se encarga de indicar si se debe editar un usuario o no
+   */
   private boolean editar;
-
+  /**
+   * Permite el ingreso del nombre en el campo correspondiente
+   */
   private JTextField campoNombre;
+  /**
+   * Permite el ingreso del teléfono asociado al usuario, en el campo
+   * correspondiente
+   */
   private JTextField campoTelefono;
+  /**
+   * Permite el ingreso del usuario a registrar en el campo correspondiente
+   */
   private JTextField campoUsuario;
+  /**
+   * Permite el ingreso de la constraseña del usuario a registrar en el campo
+   * correspondiente
+   */
   private JPasswordField campoPassword;
+  /**
+   * Permite elegir 'hombre' como el sexo del usuario a registrar
+   */
   private JRadioButton rBotonHombre;
+  /**
+   * Permite elegir 'mujer' como el sexo del usuario a registrar
+   */
   private JRadioButton rBotonMujer;
+  /**
+   * Permite mostrar las diferentes opciones de sexo que puede elegir el
+   * administrador al crear a un nuevo
+   * usuario perteneciente al sistema del restaurante
+   */
   private ButtonGroup grupoSexo;
+  /**
+   * Permite mostrar la contraseña digitalizada, correspondiente a un usuario
+   */
   private JCheckBox mostrarPassword;
+  /**
+   * Permite que pueda escribir la fecha de nacimiento del usuario a registrar
+   */
   private JTextField campoFecha;
+  /**
+   * Permite realizar la acción elegida
+   */
   private JButton btnAccion;
 
   /**
@@ -61,6 +103,9 @@ public class FormularioMesero extends JPanel {
     limpiarFormulario();
   }
 
+  /**
+   * Realiza la limpieza del formulario de registro de un usuario
+   */
   private void limpiarFormulario() {
     campoNombre.setText("");
     campoUsuario.setText("");
@@ -70,6 +115,10 @@ public class FormularioMesero extends JPanel {
     rBotonMujer.setSelected(true);
   }
 
+  /**
+   * Método que realiza la creación de los componentes y características que tiene
+   * la vista gráfica
+   */
   private void crearComponentes() {
 
     JPanel panel = new JPanel();
@@ -199,10 +248,10 @@ public class FormularioMesero extends JPanel {
       VentanaApp.getInstancia().toggleVistasUsuarios();
     });
 
-    btnAccion.setBackground( new Color( 9, 150, 47 ) );
-    btnRegresar.setBackground( Color.RED );
-    btnAccion.setForeground( Color.WHITE );
-    btnRegresar.setForeground( Color.WHITE );
+    btnAccion.setBackground(new Color(9, 150, 47));
+    btnRegresar.setBackground(Color.RED);
+    btnAccion.setForeground(Color.WHITE);
+    btnRegresar.setForeground(Color.WHITE);
 
     Box cajaBotones = Box.createHorizontalBox();
 
@@ -227,12 +276,18 @@ public class FormularioMesero extends JPanel {
     add(panel);
   }
 
+  /**
+   * Permite guardar los datos registrados durante la creación de los usuarios
+   * correspondientes
+   */
   public void cargarDatosUsuario() {
     campoNombre.setText(usuario.getNombre());
     campoUsuario.setText(usuario.getUsuario());
     campoPassword.setText(usuario.getPassword());
     campoTelefono.setText(usuario.getTelefono());
 
+    // Se le asigna un formato establecido a la fecha de nacimiento registrada en la
+    // creación de usuarios
     campoFecha.setText(usuario.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
     if (usuario.getSexo() == 'M')

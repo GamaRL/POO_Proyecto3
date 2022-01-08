@@ -17,31 +17,58 @@ import modelos.Restaurante;
 import modelos.usuarios.Usuario;
 import repositorio.RepositorioUsuarios;
 
+/**
+ * Clase que funge la adminitración de usuarios registrados en el restaurante
+ */
 public class AdministracionUsuarios extends JPanel {
-
+  /**
+   * Restaurante asociado al programa
+   */
   private Restaurante restaurante;
-  /*private Usuario usuario;
-  private boolean editar;
-  private String busqueda;*/
+  /**
+   * Administración asociada en un instante en el programa
+   */
   private AdministracionUsuarios me;
-
+  /**
+   * Permite ingresar un texto
+   */
   private JTextField campoBusqueda;
+  /**
+   * Permite realizar la acción de búsqueda de un usuario
+   */
   private JButton btnBuscar;
+  /**
+   * Permite realizar la acción de creación de un usuario
+   */
   private JButton btnCrearUsuario;
+  /**
+   * Permite seleccionar un item de una lista mostrada
+   */
   private JComboBox<String> filtros;
+  /**
+   * Permite mostrar un panel con resultador de acuerdo a la búsqueda del usuario
+   */
   private Box panelResultados;
 
+  /**
+   * Constructor de la clase
+   * 
+   * @param restaurante asociado al programa
+   * @param usuario     a buscar o registrar en el sistema
+   */
   public AdministracionUsuarios(Restaurante restaurante, Usuario usuario) {
     super();
 
     this.restaurante = restaurante;
-    // this.usuario = usuario;
-    // this.editar = usuario != null;
     me = this;
 
     crearComponentes();
   }
 
+  /**
+   * Método que realiza la creación de los componentes y características que tiene
+   * la vista gráfica
+   */
   private void crearComponentes() {
 
     JPanel panel = new JPanel();
@@ -59,8 +86,8 @@ public class AdministracionUsuarios extends JPanel {
       cargarUsuarios();
     });
 
-    btnBuscar.setBackground( new Color( 9, 150, 47 ) );
-    btnBuscar.setForeground( Color.WHITE );
+    btnBuscar.setBackground(new Color(9, 150, 47));
+    btnBuscar.setForeground(Color.WHITE);
 
     panelBusqueda.add(campoBusqueda);
     panelBusqueda.add(Box.createHorizontalStrut(30));
@@ -81,10 +108,10 @@ public class AdministracionUsuarios extends JPanel {
 
     btnCrearUsuario = new JButton("Crear usuario");
 
-    btnCrearUsuario.setBackground( new Color( 10, 87, 196 ) );
+    btnCrearUsuario.setBackground(new Color(10, 87, 196));
 
-    btnCrearUsuario.setForeground( Color.WHITE );
-    
+    btnCrearUsuario.setForeground(Color.WHITE);
+
     btnCrearUsuario.addActionListener(e -> {
       VentanaApp.getInstancia().toggleVistasUsuarios();
       VentanaApp.getInstancia().getFormulario().setUsuario(null);
@@ -111,6 +138,9 @@ public class AdministracionUsuarios extends JPanel {
 
   }
 
+  /**
+   * Se encarga del registro de los usuarios a crear
+   */
   private void cargarUsuarios() {
     panelResultados.removeAll();
     for (Usuario usuario : RepositorioUsuarios.getUsuarios()) {
@@ -141,6 +171,9 @@ public class AdministracionUsuarios extends JPanel {
     repaint();
   }
 
+  /**
+   * Se encarga de limpiar el formulario de los usuarios
+   */
   public void limpiarFormulario() {
     panelResultados.removeAll();
     campoBusqueda.setText("");

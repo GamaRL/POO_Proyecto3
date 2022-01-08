@@ -19,6 +19,9 @@ import modelos.Restaurante;
 import modelos.Ticket;
 import modelos.usuarios.Usuario;
 
+/**
+ * Clase que muestra los platillos disponibles dentro del restaurante
+ */
 class PlatillosComboBoxRenderer extends BasicComboBoxRenderer {
 
   /**
@@ -26,12 +29,20 @@ class PlatillosComboBoxRenderer extends BasicComboBoxRenderer {
    */
   private Restaurante restaurante;
 
+  /**
+   * Constructor de la clase
+   * 
+   * @param restaurante asociado al programa
+   */
   public PlatillosComboBoxRenderer(Restaurante restaurante) {
     super();
 
     this.restaurante = restaurante;
   }
 
+  /**
+   * 
+   */
   @Override
   public Component getListCellRendererComponent(JList<?> list, Object value,
       int index, boolean isSelected, boolean cellHasFocus) {
@@ -55,13 +66,35 @@ class PlatillosComboBoxRenderer extends BasicComboBoxRenderer {
   }
 }
 
+/**
+ * Clase que se encarga de buscar los platillos que se encuentran disponibles en
+ * el restaurante
+ */
 public class BusquedaPlatillos extends JPanel {
-
+  /**
+   * El restaurante asociado al sistema
+   */
   private Restaurante restaurante;
+  /**
+   * El usuario que se encarga realizando la orden (mesero/administrador)
+   */
   private Usuario usuario;
+  /**
+   * La orden de una mesa a realizar
+   */
   private OrdenMesa guiOrden;
+  /**
+   * Componente que nos permite elegir un platillo de los mostrados
+   */
   private JComboBox<Platillo> busquedaPlatillos;
 
+  /**
+   * Constructor de la clase
+   * 
+   * @param restaurante asociado al programa
+   * @param usuario     el cual, realiza atiende la orden
+   * @param guiOrden    la orden de la mesa a obtener
+   */
   public BusquedaPlatillos(Restaurante restaurante, Usuario usuario, OrdenMesa guiOrden) {
     super();
 
@@ -72,6 +105,10 @@ public class BusquedaPlatillos extends JPanel {
     crearComponentes();
   }
 
+  /**
+   * Clase que se encarga de realizar los componentes de la vista gráfica de los
+   * platillos
+   */
   private void crearComponentes() {
     JLabel labelBusqueda = new JLabel("Inserta un platillo");
 
@@ -81,10 +118,6 @@ public class BusquedaPlatillos extends JPanel {
     for (Platillo p : restaurante.getPlatillos()) {
       busquedaPlatillos.addItem(p);
     }
-
-    //busquedaPlatillos.setEditable(true);
-    //busquedaPlatillos.setSelectedItem(null);
-
     JButton btnAgregar = new JButton("Agregar");
     JButton btnFinalizarOrden = new JButton("Finalizar orden");
 
@@ -97,9 +130,9 @@ public class BusquedaPlatillos extends JPanel {
     busquedaPlatillos.setRenderer(new PlatillosComboBoxRenderer(restaurante));
 
     btnAgregar.addActionListener(e -> {
-      if ( guiOrden.getOrden() == null || usuario.getId().equals(guiOrden.getOrden().getServidor().getId()) ) {
+      if (guiOrden.getOrden() == null || usuario.getId().equals(guiOrden.getOrden().getServidor().getId())) {
         Platillo pSeleccionado = (Platillo) busquedaPlatillos.getSelectedItem();
-  
+
         if (pSeleccionado != null) {
           guiOrden.agregarPlatillo(pSeleccionado);
         } else {
@@ -111,7 +144,7 @@ public class BusquedaPlatillos extends JPanel {
 
     btnFinalizarOrden.addActionListener(e -> {
 
-      if ( !usuario.getId().equals(guiOrden.getOrden().getServidor().getId()) )
+      if (!usuario.getId().equals(guiOrden.getOrden().getServidor().getId()))
         return;
 
       int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea finalizar la orden?", "Finalizar orden",

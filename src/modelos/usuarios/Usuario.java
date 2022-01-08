@@ -146,6 +146,7 @@ public abstract class Usuario implements Serializable {
 
     /**
      * Método de acceso de consulta para el 'password' del usuario
+     * 
      * @return el 'password' del usuario
      */
     public String getPassword() {
@@ -154,6 +155,7 @@ public abstract class Usuario implements Serializable {
 
     /**
      * Método de acceso de modificación para la fecha de nacimiento del usuario
+     * 
      * @param fechaNacimiento la fecha de nacimiento del usuario
      */
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
@@ -162,6 +164,7 @@ public abstract class Usuario implements Serializable {
 
     /**
      * Método de acceso de modificación para el sexo del usuario.
+     * 
      * @param sexo el 'sexo' del usaurio.
      */
     public void setSexo(char sexo) {
@@ -170,6 +173,7 @@ public abstract class Usuario implements Serializable {
 
     /**
      * Método de acceso de modificación para el teléfono del usuario.
+     * 
      * @param telefono el nuevo teléfono del usuario.
      */
     public void setTelefono(String telefono) {
@@ -177,7 +181,9 @@ public abstract class Usuario implements Serializable {
     }
 
     /**
-     * Método de acceso de modificación para el 'nombre de usuario' con el que el usuario ingresará al sistema.
+     * Método de acceso de modificación para el 'nombre de usuario' con el que el
+     * usuario ingresará al sistema.
+     * 
      * @param usuario el nuevo 'nombre de usuario' del usuario.
      */
     public void setUsuario(String usuario) {
@@ -186,6 +192,7 @@ public abstract class Usuario implements Serializable {
 
     /**
      * Método de acceso de modifiación para la contraseña del usuario.
+     * 
      * @param password la nueva contraseña del usuario.
      */
     public void setPassword(String password) {
@@ -194,6 +201,7 @@ public abstract class Usuario implements Serializable {
 
     /**
      * Indica si un usuario es administrador o no.
+     * 
      * @return 'true' en caso de que sea administrador, 'false' de lo contrario.
      */
     public boolean esAdmin() {
@@ -202,8 +210,9 @@ public abstract class Usuario implements Serializable {
 
     /**
      * Método para finalizar una orden
-     * @param mesa la mesa a la que le pertenece la orden
-     * @param propina la propina que se asignó al servidor
+     * 
+     * @param mesa              la mesa a la que le pertenece la orden
+     * @param propina           la propina que se asignó al servidor
      * @param esPagoConEfectivo indicador de si e pago se realizó en efectivo o no
      * @return el 'Ticket' generado
      */
@@ -215,15 +224,23 @@ public abstract class Usuario implements Serializable {
     }
 
     /**
-     * Dado un 'usuario' y un 'password', verifica si coinciden con los almacenados en this.
-     * @param usuario el 'nombre de usuario' a verificar
+     * Dado un 'usuario' y un 'password', verifica si coinciden con los almacenados
+     * en this.
+     * 
+     * @param usuario  el 'nombre de usuario' a verificar
      * @param password el 'password' a verificar
-     * @return 'true' en caso de que se haya verificado exitosamente, 'false' de lo contrario.
+     * @return 'true' en caso de que se haya verificado exitosamente, 'false' de lo
+     *         contrario.
      */
     public boolean verificarCredenciales(String usuario, String password) {
         return this.usuario.equals(usuario) && this.password.equals(password);
     }
 
+    /**
+     * Sobreescritura del método equals, sirve para realizar una verificación acerca
+     * de si el usuario existe dentro
+     * del sistema
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Usuario) {
@@ -233,6 +250,11 @@ public abstract class Usuario implements Serializable {
         return false;
     }
 
+    /**
+     * Se encarga de obtener la clave dentro de un HashCode
+     * 
+     * @return id.hashCode el número asociado a una clave
+     */
     @Override
     public int hashCode() {
         return id.hashCode();

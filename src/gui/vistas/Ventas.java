@@ -24,7 +24,7 @@ public class Ventas extends JTabbedPane {
   private Restaurante restaurante;
 
   /**
-   * 
+   * Total de las ventas realizadas
    */
   private double total;
 
@@ -40,8 +40,6 @@ public class Ventas extends JTabbedPane {
 
     crearComponentes();
   }
-
-  
 
   /**
    * Método que realiza la creación de los componentes y características que tiene

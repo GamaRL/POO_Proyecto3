@@ -168,7 +168,8 @@ public class VentanaApp extends JFrame {
     panel.add("Inicio", new Inicio(restaurante, usuario));
     if (usuario.esAdmin()) {
       JPanel panelUsuarios = new JPanel();
-      ImageIcon adminIcon = new ImageIcon(new ImageIcon("imagenes/adminIcon.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
+      ImageIcon adminIcon = new ImageIcon(
+          new ImageIcon("imagenes/adminIcon.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
 
       buscador = new AdministracionUsuarios(restaurante, usuario);
       formulario = new FormularioMesero();
@@ -192,13 +193,13 @@ public class VentanaApp extends JFrame {
         }
       });
     }
-    
+
     Estadisticas estadisticas = new Estadisticas(restaurante);
     panel.add("Estadísticas", estadisticas);
     panel.add("Logout", new Logout());
-    
+
     panel.addChangeListener(e -> {
-      if ( panel.getTabCount() - panel.getSelectedIndex() == 2 ) {
+      if (panel.getTabCount() - panel.getSelectedIndex() == 2) {
         estadisticas.crearComponentes();
       }
     });
@@ -232,6 +233,7 @@ public class VentanaApp extends JFrame {
 
   /**
    * Método de acceso de consulta al formulario de meseros.
+   * 
    * @return el formulario de meseros
    */
   public FormularioMesero getFormulario() {

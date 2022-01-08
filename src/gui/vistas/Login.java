@@ -18,6 +18,10 @@ import modelos.Restaurante;
 import modelos.usuarios.Usuario;
 import repositorio.RepositorioUsuarios;
 
+/**
+ * Clase que realiza la abstracción de la ventana gráfica 'login' ingreso al
+ * sistema del restaurante
+ */
 public class Login extends JPanel {
 
   /**
@@ -118,8 +122,6 @@ public class Login extends JPanel {
     add(panelControl);
 
     setBorder(BorderFactory.createEmptyBorder(35, 35, 30, 30));
-
-    // getContentPane().add(panel);
   }
 
   /**

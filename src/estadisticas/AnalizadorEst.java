@@ -10,15 +10,30 @@ import modelos.Ticket;
 import modelos.usuarios.Usuario;
 import repositorio.RepositorioUsuarios;
 
+/**
+ * Clase abstracta que sirve para llevar a cabo un analizador de estadísticas,
+ * el cual ayuda a
+ * obtener las estadísticas por usuario y por platillos
+ */
 public abstract class AnalizadorEst {
-
+  /**
+   * Monto total vendido
+   */
   private static Double totalDinero;
+  /**
+   * Cantidad total de los platillos vendidos
+   */
   private static int totalPlatillos;
 
-  public static Map<Usuario, Double> getEstadisticasUsuarios( Restaurante restaurante ) {
+  /**
+   * Se encarga de obtener los usuarios pertenecientes al restaurante
+   * 
+   * @param restaurante asociado al programa
+   * @return ventasMesero las ventas asociadas a los meseros
+   */
+  public static Map<Usuario, Double> getEstadisticasUsuarios(Restaurante restaurante) {
     Map<Usuario, Double> ventasMesero = new LinkedHashMap<>();
     totalDinero = 0.0;
-
     List<Usuario> usuarios = RepositorioUsuarios.getUsuarios();
 
     for (Usuario u : usuarios) {
@@ -32,13 +47,21 @@ public abstract class AnalizadorEst {
       ventasMesero.put(u, avg);
       totalDinero += t.getTotal();
     }
+    // Se devuelve las ventas correspondientes a cada uno de los meseros
     return ventasMesero;
   }
 
-  public static Map<Platillo, Integer> getEstadisticasPlatillos( Restaurante restaurante ) {
+  /**
+   * Se encarga de obtener un Map correspondiente a los platillos que se
+   * encuentran en
+   * el restaurante asociado así como la cantidad de ventas de cada uno
+   * 
+   * @param restaurante asociado al sistema del restaurante
+   * @return ventasPlatillos las ventas asociadas a cada platillo
+   */
+  public static Map<Platillo, Integer> getEstadisticasPlatillos(Restaurante restaurante) {
     Map<Platillo, Integer> ventasPlatillos = new LinkedHashMap<>();
     totalPlatillos = 0;
-
 
     for (Platillo platillo : restaurante.getPlatillos()) {
       ventasPlatillos.put(platillo, 0);
@@ -49,14 +72,21 @@ public abstract class AnalizadorEst {
       Map<Platillo, Integer> platillos = t.getOrden().getPlatillos();
       for (Platillo p : platillos.keySet()) {
         ventasPlatillos.put(p, ventasPlatillos.get(p) + platillos.get(p));
-        numPlatillos += platillos.get( p );
+        numPlatillos += platillos.get(p);
       }
       totalPlatillos += numPlatillos;
     }
     return ventasPlatillos;
   }
 
-  public static Map<Integer, Double> getEstadisticasMesas( Restaurante restaurante ) {
+  /**
+   * Se encarga de obtener un Map asociado al número de mesa con el total vendido
+   * en esa mesa
+   * 
+   * @param restaurante asociado al sistema del restaurante
+   * @return ventasMesa cantidad de las ventas realizadas por cada mesa
+   */
+  public static Map<Integer, Double> getEstadisticasMesas(Restaurante restaurante) {
     Map<Integer, Double> ventasMesa = new LinkedHashMap<>();
     totalDinero = 0.0;
 
@@ -76,11 +106,23 @@ public abstract class AnalizadorEst {
     return ventasMesa;
   }
 
-  public static Double getTotalDinero () {
+  /**
+   * Método de acceso de lectura para obtener el total vendido
+   * 
+   * @return totalDinero monto vendido
+   */
+  public static Double getTotalDinero() {
     return totalDinero;
   }
 
-  public static int getTotalPlatillos () {
+  /**
+   * Método de acceso de lectura, permite obtener el total de los platillos
+   * vendidos en general
+   * 
+   * @return totalPlatillos total de platillos vendidos
+   */
+  public static int getTotalPlatillos() {
     return totalPlatillos;
+
   }
 }
