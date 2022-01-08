@@ -2,7 +2,7 @@ package modelos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -45,7 +45,7 @@ public class Restaurante implements Serializable {
     this.nombre = nombre;
     this.mesas = new ArrayList<>();
     this.tickets = new LinkedList<>();
-    this.platillos = new HashSet<>();
+    this.platillos = new LinkedHashSet<>();
 
     for (int i = 1; i <= numMesas; i++)
       this.mesas.add(new Mesa(i));

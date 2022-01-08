@@ -48,7 +48,6 @@ class ButtonEditor extends DefaultCellEditor {
 
   protected JButton btn;
   private String label;
-  private Boolean clicked;
 
   public ButtonEditor(JTextField txt) {
     super(txt);
@@ -64,23 +63,16 @@ class ButtonEditor extends DefaultCellEditor {
   public Component getTableCellEditorComponent(JTable table, Object obj, boolean arg2, int arg3, int arg4) {
     label = obj == null ? "" : obj.toString();
     btn.setText(label);
-    clicked = true;
     return btn;
   }
 
   @Override
   public Object getCellEditorValue() {
-    if (clicked) {
-      // Eliminar platillo de orden
-    }
-
-    clicked = false;
     return new String(label);
   }
 
   @Override
   public boolean stopCellEditing() {
-    clicked = false;
     return super.stopCellEditing();
   }
 }

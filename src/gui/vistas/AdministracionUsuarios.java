@@ -4,7 +4,6 @@ import java.awt.Color;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -13,17 +12,10 @@ import javax.swing.JTextField;
 
 import gui.VentanaApp;
 import gui.componentes.CuadroUsuario;
-import modelos.Restaurante;
 import modelos.usuarios.Usuario;
 import repositorio.RepositorioUsuarios;
 
 public class AdministracionUsuarios extends JPanel {
-
-  private Restaurante restaurante;
-  /*private Usuario usuario;
-  private boolean editar;
-  private String busqueda;*/
-  private AdministracionUsuarios me;
 
   private JTextField campoBusqueda;
   private JButton btnBuscar;
@@ -31,21 +23,13 @@ public class AdministracionUsuarios extends JPanel {
   private JComboBox<String> filtros;
   private Box panelResultados;
 
-  public AdministracionUsuarios(Restaurante restaurante, Usuario usuario) {
-    super();
-
-    this.restaurante = restaurante;
-    // this.usuario = usuario;
-    // this.editar = usuario != null;
-    me = this;
-
+  public AdministracionUsuarios(Usuario usuario) {
     crearComponentes();
   }
 
   private void crearComponentes() {
 
-    JPanel panel = new JPanel();
-    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+    Box panel = Box.createVerticalBox();
 
     Box panelIzquierdo = Box.createVerticalBox();
 
@@ -68,10 +52,11 @@ public class AdministracionUsuarios extends JPanel {
 
     Box panelFiltro = Box.createHorizontalBox();
     filtros = new JComboBox<>();
-    filtros.addItem("Nombre");
     filtros.addItem("Usuario");
+    filtros.addItem("Nombre");
     filtros.addItem("Teléfono");
     filtros.setSelectedIndex(0);
+
     JLabel etiquetaFiltro = new JLabel("Buscar por");
     etiquetaFiltro.setLabelFor(filtros);
 
@@ -96,19 +81,15 @@ public class AdministracionUsuarios extends JPanel {
     panelIzquierdo.add(Box.createVerticalStrut(10));
     panelIzquierdo.add(btnCrearUsuario);
 
-    Box panelDerecho = Box.createVerticalBox();
-
     panelResultados = Box.createVerticalBox();
-    panelDerecho.add(panelResultados);
 
     panel.add(panelIzquierdo);
     panel.add(Box.createVerticalStrut(20));
-    panel.add(panelDerecho);
+    panel.add(panelResultados);
 
     panel.setBorder(BorderFactory.createEmptyBorder(35, 35, 30, 30));
 
     add(panel);
-
   }
 
   private void cargarUsuarios() {
@@ -117,19 +98,19 @@ public class AdministracionUsuarios extends JPanel {
       switch (filtros.getSelectedItem().toString()) {
         case "Nombre":
           if (usuario.getNombre().equals(campoBusqueda.getText())) {
-            panelResultados.add(new CuadroUsuario(restaurante, me, usuario));
+            panelResultados.add(new CuadroUsuario(this, usuario));
           }
           break;
 
         case "Usuario":
           if (usuario.getUsuario().equals(campoBusqueda.getText())) {
-            panelResultados.add(new CuadroUsuario(restaurante, me, usuario));
+            panelResultados.add(new CuadroUsuario(this, usuario));
           }
           break;
 
         case "Teléfono":
           if (usuario.getTelefono().equals(campoBusqueda.getText())) {
-            panelResultados.add(new CuadroUsuario(restaurante, me, usuario));
+            panelResultados.add(new CuadroUsuario(this, usuario));
           }
           break;
 
@@ -137,8 +118,7 @@ public class AdministracionUsuarios extends JPanel {
           break;
       }
     }
-    VentanaApp.getInstancia().pack();
-    repaint();
+    updateUI();
   }
 
   public void limpiarFormulario() {

@@ -136,7 +136,7 @@ public class VentanaApp extends JFrame {
     setTitle(restaurante.getNombre() + " - Iniciar sesión");
 
     setSize(400, 200);
-    setResizable(false);
+    //setResizable(false);
   }
 
   /**
@@ -170,7 +170,7 @@ public class VentanaApp extends JFrame {
       JPanel panelUsuarios = new JPanel();
       ImageIcon adminIcon = new ImageIcon(new ImageIcon("imagenes/adminIcon.png").getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
 
-      buscador = new AdministracionUsuarios(restaurante, usuario);
+      buscador = new AdministracionUsuarios(usuario);
       formulario = new FormularioMesero();
 
       panelUsuarios.add(buscador);

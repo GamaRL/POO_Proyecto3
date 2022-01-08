@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -72,11 +71,9 @@ public class FormularioMesero extends JPanel {
 
   private void crearComponentes() {
 
-    JPanel panel = new JPanel();
-    panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+    Box panel = Box.createHorizontalBox();
 
     Box panelIzquierdo = Box.createVerticalBox();
-
     // Creación del campo para el 'nombre'
     Box panelNombre = Box.createHorizontalBox();
 
@@ -148,7 +145,6 @@ public class FormularioMesero extends JPanel {
     panelTelefono.add(campoTelefono);
 
     // Creación del campo para el 'fecha de nacimiento'
-
     Box panelFecha = Box.createHorizontalBox();
     campoFecha = new JTextField();
     campoFecha.setColumns(10);
@@ -223,6 +219,7 @@ public class FormularioMesero extends JPanel {
     panel.add(panelDerecho);
 
     panel.setBorder(BorderFactory.createEmptyBorder(35, 35, 30, 30));
+    panel.setBackground(new Color(0,0,0));
 
     add(panel);
   }
