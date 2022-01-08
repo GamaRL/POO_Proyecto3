@@ -29,7 +29,7 @@ además de que fue las primero en implementarse. Realmente su funcionamiento
 es bastante simple:
 
 \paragraph{Clase \texttt{Usuario}, \texttt{Mesero} y \texttt{Administrador}.} 
-Se tratan de las clases a trravés de las cuales se implementació el inicio de 
+Se tratan de las clases a través de las cuáles se implementó el inicio de 
 sesión en el programa. Todas se encuentran definidas en el sub-paquete 
 \texttt{modelos.usuarios}.
 
@@ -177,7 +177,30 @@ clase; sin embargo, también se definieron los siguientes métodos adicionales:
 \end{itemize}
 
 \paragraph{\texttt{Orden}.} Se trata de la clase que se encarga de abstraer la orden 
-de una de las mesas del restaurante.
+de una de las mesas del restaurante. En ella, se declaran los siguientes atributos:
+\begin{itemize}
+  \item \texttt{id}: Un objeto de la clase \texttt{java.util.UUID}, a través del cual
+    se identifica a la orden de forma única.
+  \item \texttt{servidor}: Un objeto que herede de la clase \texttt{Usuario} que 
+    representa a la persona que está atendiendo la orden/mesa.
+  \item \texttt{platillos}: Se trata de una tabla hash ---concepto abordado en la materia
+    de \textit{Estructura de Datos y Algoritmos II}--- en el cual se almacenan pares de 
+    valores de la forma \texttt{Platillo, Integer} para saber cuántos platillos se 
+    solicitan de cada tipo. En la clase, se declara como un objeto de la clase 
+    \texttt{Map}, pero a nivel de implementación se usa un \texttt{LinkedHashMap}, el cual 
+    ayuda a conservar el orden de las claves (que se ve reflejado en el orden en el que
+    aparecen los platillos).
+  \item \texttt{mesa}: Almacena el número de la mesa con la que está asociada la orden.
+\end{itemize}
+
+Nuevamente, se definieron los \textit{\textbf{getters}} para los atributos de la clase 
+más una serie de métodos adicionales en para el funcionamiento de la misma. Se comenzó por 
+\texttt{calcularSubTotal}, el cual suma el precio de todos los platillos que se encuentran 
+registrados en la orden. Posteriormente, se continuó con \texttt{agregarPlatillo}, el cual
+agrega un platillo al \texttt{Map} que asocia los platillos con la cantidad de veces que 
+se pidió. Se continuó con el método \texttt{setNumPlatillo}, el cual modifica la cantidad 
+de veces que se solicitó un platillo; y por último, se implementó el método 
+\texttt{eliminarPlatillo}, a través del cual se puede eliminar un platillo de la orden.
 
 \paragraph{\texttt{Ticket}.} Se trata de la clase que se encarga de abstraer el 
 ticket que se genera después de cerrar una orden.
