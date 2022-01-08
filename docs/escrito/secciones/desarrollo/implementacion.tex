@@ -1,8 +1,55 @@
 \subsection*{Implementación}
 
-% TODO: Descripción de las pricipales clases utilizadas, manejo de archivos, herencia, polimorfismo
-% hablar de los archivos de objetos (mejoras sobre archivos de usuarios)
+% TODO: Descripción de las pricipales clases utilizadas, manejo de archivos,
+% herencia, polimorfismo hablar de los archivos de objetos (mejoras sobre
+% archivos de usuarios)
 
-\subsubsection*{Principales Clases}
+Para comenzar con la implementación del problema, se decidieron clasificar las
+diversas clases del proyecto en las siguientes clasificaciones:
 
-\paragraph{\texttt{Mesero}.} esta clase lo que busca es representar la estructura principal para almacenar un mesreo en la aplicación.
+\begin{itemize}
+  \item Las clases que se encargan de almacenar únicamente la información de un objeto en específico (modelos).
+  \item Las clases especiales para obtener/almacenar la información contenida en la memoria secundaria (repositorios).
+  \item Las clases que se encargan de configurar el proyecto para que pueda comenzar a trabajar (configuraciones).
+  \item Clases auxiliares que ayudaron a realizar tareas adicionales.
+  \item Las clases encargadas de manejar la interfaz gráfica, de las cuales no se entrará en tanto detalle para efectos de este escrito.
+\end{itemize}
+
+\subsubsection*{Modelos de datos}
+
+Estas clases se encuentran definidas dentro del paquete \texttt{modelos}, en el cual se encuentran declarados todos y cada
+uno de los componentes que interactúan dentro de la apliación. Se comenzará hablando acerca de los usuarios, que fue una de
+las partes más importantes del sistema desarrollado; además de que fue las primero en implementarse. Realmente su funcionamiento
+es bastante simple:
+
+\begin{itemize}
+  \item \textbf{\texttt{Usuario}}: Se trata de una \textit{clase abstracta} que cuenta con los siguientes atributos: \texttt{id}
+  (identificador único asociado a una instancia del objeto), \texttt{nombre} (el nombre del usuario), \texttt{fechaNacimiento} (la
+  fecha de nacimiento del usuario), \texttt{sexo}, \texttt{telefono}, \texttt{usuario} (nombre de usuario con el que accederá a la aplicación),
+  \texttt{password} (la contraseña con la que el usuario podrá acceder al sistema).
+
+  Cada uno de estos atributos se definió con el modificador de acceso \texttt{private} con la finalidad de aplica los conceptos de
+  \textbf{encapsulamiento} y \textbf{abstracción} ---pilares fundamentales de la Programación Orientada a Objetos---. Es por ello, que
+  se definieron diversos métodos de acceso para cada uno de los atributos ---\textbf{\textit{setters}} y \textbf{\textit{getters}}---. Junto
+  con dos métodos adicionales de suma importancia: Por un lado, \texttt{validarCredenciales}, el cual se encarga de validar si un usuario y
+  una contraseña dadas pertenecen al usuario; y por otro lado, \texttt{esAdmin}, el cual se encarga de indicar si un usuario dado tiene permisos
+  de administrador o no \footnote{Esto se logra a con ayuda de la clase \texttt{Administrador}}, que se mencionará más adelante.
+
+  \item \textbf{\texttt{Mesero}}: Se trata de una clase que hereda de la clase \texttt{Usuario}, únicamente define el constructor de la clase
+  y hace uso de la instrucción \texttt{super}. En esta clase se representa a los meseros ``normales'' que se encuentran en un restaurante.
+
+  \item \textbf{\texttt{Mesero}}: Se trata de una clase que hereda de la clase \texttt{Usuario} ---de la misma forma que \texttt{Mesero}---, únicamente define el constructor de la clase
+  y hace uso de la instrucción \texttt{super}. En esta clase se representa a los administradores del restaurante ---que también tienen toda las opciones de un mesero normal---.
+\end{itemize}
+
+Es importante mencionar que para la finalidad del proyecto no se requirió agregar más atributos o métodos a las clases \texttt{Mesero} o \texttt{Administrador}
+ya que se pude aprovechar el hecho de que cada una define una ``rama'' en el árbol de herencia totalmente diferente una de la otra. Es por ello que sólo sirven ---para
+efectos de nuestro programa--- como simples etiquetas. Pero gracias al operador \texttt{\textbf{instanceof}} se puede saber si un \texttt{Usuario} es administrador o no.
+Esto comportamiento es el que se define en el método \texttt{esAdmin}, el cual se menciona en la clase \texttt{Usuario}.
+
+\paragraph{\texttt{Usuario}, \texttt{Mesero} y \texttt{Administrador}}
+Para implementar el sistema de usuarios, fue importante crear la clase abstracta \texttt{Usuario},
+en la cual se definen
+
+\paragraph{\texttt{Mesero}.} esta clase lo que busca es representar la
+estructura principal para almacenar un mesreo en la aplicación.
