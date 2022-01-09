@@ -226,3 +226,53 @@ atributos:
 \end{itemize}
 
 \pagebreak
+
+\subsubsection*{Repositorios}
+
+Estas clases se encargan de hacer consultas directamente a los archivos almacenados en la memoria 
+secundaria \footnote{Esta idea se tomó de \textbf{Spring Boot}, en donde las consultas a la base de datos se 
+hace a través de una clase ``intermediaria'' llamada \textbf{repositorio}}. Tal como ya se mencionó 
+en la sección anterior, las clases se marcaron como \texttt{Serializable} con la finalidad de poder 
+almacenarlas en archivos de objetos. La forma en la que se usa la composición en la clase 
+\texttt{Restaurante} nos permitió realizar de forma muy sencilla el guardado y recuperación de la 
+información. Sólo requerimos tres clases ``repositorios'', ambas localizadas en el paquete 
+\texttt{repositorios}, más una adicional para almacenar valores constantes para ambos repositorios.
+
+\paragraph{\texttt{Repositorio}.} Esta clase únicamente define las rutas a los archivos de usuarios
+y del restaurante. Se declaran a través de las variables ---o en este caso, ``constantes de clase'' ya 
+que se definieron como \texttt{final}--- de clase \texttt{ARCHIVO\_RESTAURANTE} y 
+\texttt{ARCHIVO\_USUARIOS}, junto con la variable \texttt{ruta}, la cual almacena la ruta absoluta 
+al directorio de archivos y la cual se puede acceder a través del método \texttt{getRuta}.
+
+\paragraph{\texttt{RepositorioUsuarios}.} Esta clase se encarga de hacer consulas al archivos de
+usuarios, en donde se guarda la lista de usuarios que pueden entrar al sistema. Es importante mencionar
+nuevamente que se hace uso de un archivo de objetos. Se tienen dos métodos importantes:
+
+\begin{itemize}
+  \item \texttt{getUsuarios}: Lee el archivo relacionado con \texttt{ARCHIVO\_USUARIOS} con la finalidad
+    de recuperar la lista que almacena todos los usuarios del programa. Para ello, se abre un flujo de 
+    lectura de información que fluye desde el archivo hacia el programa y a través de un ciclo 
+    \texttt{do-while} se va llenando una estructura de tipo \texttt{LinkedList} con cada uno de los 
+    usuarios. Es importante mencionar que se debe hacer un manejo adecuado de las excepciones: Se detecta 
+    el final del archivo cuando se arroja una excepción del tipo \texttt{EOFException}, por lo que se puede 
+    generar un bloque \texttt{catch} vacío y posteriormente hacer una captura de la excepción más general
+    \texttt{Exception}. Además, es importante mencionar que se hizo uso de un bloque 
+    \texttt{try-with-resources} para leer el archivo y este nos ayuda a cerrar automáticamente el flujo de
+    datos, aún cuando sucedan errores, lo cual es sumamente conveniente.
+  \item \texttt{updateUsuario}: Este métoodo recibe la lista de usaurios a ``reescribir'' y un usuario a 
+    actualizar. Ahora, se abre un flujo de escritura ---que va del programa a un archivo---. Para este caso, 
+    simplemente se itera sobre la lista de elementos y se detecta cuál es el elemento a actualizar con la 
+    finalidad de reescribirlo con la nueva información que se proporcionó.
+\end{itemize}
+
+\paragraph{\texttt{RepositorioRestaurante}.} Esta clase se encarga de gestionar la lectura/escritura del 
+objeto restaurante en un archivo de objetos. Los dos métodos con los que cuenta son:
+
+\begin{itemize}
+  \item \texttt{getRestaurante}: Nuevamente, se abre un flujo de lectura ---esta vez al archivo relacionado 
+    con \texttt{ARCHIVO\_RESTAURANTE} y se lee el objeto que se encuentra ahí dentro.
+  \item \texttt{guardar}: Se encarga de guardar el estado del restaurante en el archivo de objetos haciendo 
+    uso de un flujo de escritura.
+\end{itemize}
+
+\pagebreak
