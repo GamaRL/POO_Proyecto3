@@ -207,7 +207,9 @@ ticket que se genera después de cerrar una orden. En ella se encuentran los sig
 atributos:
 \begin{itemize}
   \item \texttt{iva}: el monto que se le asigna por el costo de IVA a cuando un cliente realiza 
-  una orden 
+  una orden. Es importante mencionar que este atributo se definió como \texttt{static} para que
+  se comparta a través de toda la clase y como \texttt{final} para que su valor no pueda ser 
+  modificado.
   \item \texttt{mesa}: es un entero, el cual nos proporciona el número de mesa de la orden para poder 
   tener información sobre en qué mesa fue atendido cierto cliente. 
   \item \texttt{orden}: un objeto del tipo \texttt{Orden}, la cual contiene los platillos 
