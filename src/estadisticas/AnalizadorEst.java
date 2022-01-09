@@ -8,7 +8,7 @@ import modelos.Platillo;
 import modelos.Restaurante;
 import modelos.Ticket;
 import modelos.usuarios.Usuario;
-import repositorio.RepositorioUsuarios;
+import repositorios.RepositorioUsuarios;
 
 /**
  * Clase abstracta que sirve para llevar a cabo un analizador de estadísticas,

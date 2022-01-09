@@ -6,8 +6,8 @@ import configuraciones.ManejadorRestaurante;
 import configuraciones.ManejadorUsuarios;
 import gui.VentanaApp;
 import modelos.Restaurante;
-import repositorio.Repositorio;
-import repositorio.RepositorioRestaurante;
+import repositorios.Repositorio;
+import repositorios.RepositorioRestaurante;
 
 /**
  * Clase principal del proyecto.

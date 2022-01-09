@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import gui.VentanaApp;
 import modelos.usuarios.Mesero;
 import modelos.usuarios.Usuario;
-import repositorio.RepositorioUsuarios;
+import repositorios.RepositorioUsuarios;
 
 /**
  * Clase que realiza el diseño del panel a mostrar asociado a los datos que

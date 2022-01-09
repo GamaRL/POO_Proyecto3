@@ -11,7 +11,7 @@ import java.util.List;
 import modelos.usuarios.Administrador;
 import modelos.usuarios.Mesero;
 import modelos.usuarios.Usuario;
-import repositorio.Repositorio;
+import repositorios.Repositorio;
 
 /**
  * Clase que contiene los usuarios creados por defecto(administrador y meseros)

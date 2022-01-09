@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import gui.VentanaApp;
 import gui.componentes.CuadroUsuario;
 import modelos.usuarios.Usuario;
-import repositorio.RepositorioUsuarios;
+import repositorios.RepositorioUsuarios;
 
 /**
  * Clase que funge la adminitración de usuarios registrados en el restaurante

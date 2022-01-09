@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import repositorio.RepositorioRestaurante;
+import repositorios.RepositorioRestaurante;
 
 /**
  * Clase que lleva a la abstracción de un restaurante, implementa a la interface

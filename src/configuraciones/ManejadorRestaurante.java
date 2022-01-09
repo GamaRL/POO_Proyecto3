@@ -7,7 +7,7 @@ import java.io.ObjectOutputStream;
 
 import modelos.Platillo;
 import modelos.Restaurante;
-import repositorio.Repositorio;
+import repositorios.Repositorio;
 
 /**
  * Clase que contiene la configuración inicial para crear un archivo que

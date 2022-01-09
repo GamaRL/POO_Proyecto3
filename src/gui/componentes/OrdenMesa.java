@@ -23,7 +23,7 @@ import modelos.Platillo;
 import modelos.Restaurante;
 import modelos.Ticket;
 import modelos.usuarios.Usuario;
-import repositorio.RepositorioRestaurante;
+import repositorios.RepositorioRestaurante;
 
 class ButtonRenderer extends JButton implements TableCellRenderer {
 
