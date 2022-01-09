@@ -74,7 +74,7 @@ agregar más atributos o métodos a las clases \texttt{Mesero} o
 define una ``rama'' en el árbol de herencia totalmente diferente una de la 
 otra. Es por ello que sólo sirven ---para efectos de nuestro programa--- como 
 simples etiquetas. Pero gracias al operador \texttt{\textbf{instanceof}} se 
-puede saber si un \texttt{Usuario} es administrador o no. Esto comportamiento 
+puede saber si un \texttt{Usuario} es administrador o no. Este comportamiento 
 es el que se define en el método \texttt{esAdmin}, el cual se menciona en la 
 clase \texttt{Usuario}.
 
@@ -85,7 +85,7 @@ ello, se analizaron los diversos requerimientos del proyecto y se llegó a la
 conclusión de que se requerían los siguentes atributos \footnote{Es importante 
 mencionar que para llegar a este resultado, la versión original de la clase se
 debió modificar de poco en poco para considerar nuevos requerimientos}. La 
-implementación más o menos tiene lo siguiente:
+implementación tiene lo siguiente:
 
 \begin{itemize}
   \item \textbf{Atributos}
@@ -151,7 +151,7 @@ métodos de acceso de modificación para los objetos de esta clase. Los únicos
 métodos de acceso que se implementaron fueron los de consulta ---mejor conocidos
 como \textit{\textbf{getters}}---.
 
-Para efectos del programa, fue necesari sobre-excribir el método \texttt{toString} 
+Para efectos del programa, fue necesario sobre-excribir el método \texttt{toString} 
 a través del cual se puede convertir el objeto a una cadena (\texttt{String}) 
 legible para una persona. Lo que se hizo fue retornar únicamente el nombre del 
 platillo en cuestión.
@@ -203,6 +203,24 @@ de veces que se solicitó un platillo; y por último, se implementó el método
 \texttt{eliminarPlatillo}, a través del cual se puede eliminar un platillo de la orden.
 
 \paragraph{\texttt{Ticket}.} Se trata de la clase que se encarga de abstraer el 
-ticket que se genera después de cerrar una orden.
+ticket que se genera después de cerrar una orden. En ella se encuentran los siguientes
+atributos:
+\begin{itemize}
+  \item \texttt{iva}: el monto que se le asigna por el costo de IVA a cuando un cliente realiza 
+  una orden 
+  \item \texttt{mesa}: es un entero, el cual nos proporciona el número de mesa de la orden para poder 
+  tener información sobre en qué mesa fue atendido cierto cliente. 
+  \item \texttt{orden}: un objeto del tipo \texttt{Orden}, la cual contiene los platillos 
+  que se tomaron en la mesa ocupada. 
+  \item \texttt{subtotal}: contiene el monto (en pesos) de la cantidad a pagar por los platillos 
+  pedidos. 
+  \item \texttt{total}: el monto total a pagar, inlcuye el monto a pagar por los platillos pedidos junto con la 
+  propina y el IVA. 
+  \item \texttt{propina}: se refiere al monto (en pesos) que el cliente decide otorgar como propina.
+  \item \texttt{esPagoConEfectivo}: de tipo \texttt{bolean} que determina si el cliente ha pagado en 
+  efectivo o con tarjeta. 
+  \item \texttt{fechaHora}: objetos de la clase \texttt{\textbf{LocalDateTime}} que nos permite 
+  obtener la fecha y hora actual, al momento de utilizar el programa. 
+\end{itemize}
 
 \pagebreak
