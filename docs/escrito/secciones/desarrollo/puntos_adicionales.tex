@@ -40,21 +40,21 @@ como \texttt{ActionListener} o parececidas. Es importante destacar la utilizaci�
 mucho más fácil la creación de \textit{listeners} para los diversos eventos de los componentes. Por ejemplo, en la forma tradicional 
 ---antes de la llegada de Java 8--- se tenía que hacer de la siguiente forma:
 
-\begin{lstlisting}{language=Java}
-btn.addActionListener( new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        e.getSource();
-    }
-} )
+\begin{lstlisting}[language=Java]
+    btn.addActionListener( new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            e.getSource();
+        }
+    });
 \end{lstlisting}
 
 O incluso de formas mucho más complejas. Sin embargo, ahora se puede simplificar todo este código a través de lo siguiente:
 
-\begin{lstlisting}{language=Java}
+\begin{lstlisting}[language=Java]
     btn.addActionListener( e -> {
         e.getSource();
-    }) 
+    });
 \end{lstlisting}
 
 A la expresión que se forma con la punta de flecha (\texttt{->}) se le conoce como expresión lambda y básicamente puede 
@@ -63,7 +63,7 @@ de las llaves es la implementación del método de la interfaz. Como se puede ve
 mucho a la forma en la que trabajan mecanismos similares a los \textit{callback} o a la declaración de las funciones anónimas 
 en lenguajes como \textbf{PHP} o \textbf{JavaScript}.
 
-Las funciones \textit{lambda} abre las posibilidades a nuevos escenarios y tecnologías que se pueden aprender haciendo uso del 
+Las funciones \textit{lambda} abren las posibilidades a nuevos escenarios y tecnologías que se pueden aprender haciendo uso del 
 lenguaje de programación Java; por ejemplo: La \textit{Java Stream API}, a través de la cual se puede escalar la forma de trabajar 
 con el \textit{Java Collections Framework} y que ayuda a hacer filtros de información o ``mapeo'' de la misma, únicamente se puede 
 explorar a través de funciones \textit{lambda}. Junto con este tipo de expresiones viene todo un nuevo paradigma de programación llamado 
@@ -75,8 +75,11 @@ importante enfatizar en que se hizo uso de ellas.
 \subsubsection*{Patrones de diseño}
 El patrón implememntado en nuestra solución fue el llamado \texttt{Singleton}. Dicho patrón consiste en que solo pueda existir una sola
 instancia de la clase y ésta esté almacenada como atributo de la clase. Fue implementado en la clase \texttt{VentanaApp}. Los pasos para implementar el patrón fueron:
+
 \begin{enumerate}
     \item Establecer un atributo de la clase del mismo tipo que la misma
     \item Establecer el modificador de acceso del constructor como \texttt{private}
     \item Crear un método público estático, llamado \texttt{getInstancia}, que regresa el atributo creado en el paso 1.
 \end{enumerate}
+
+\pagebreak
