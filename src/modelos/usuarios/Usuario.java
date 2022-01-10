@@ -236,11 +236,6 @@ public abstract class Usuario implements Serializable {
         return this.usuario.equals(usuario) && this.password.equals(password);
     }
 
-    /**
-     * Sobreescritura del método equals, sirve para realizar una verificación acerca
-     * de si el usuario existe dentro
-     * del sistema
-     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Usuario) {
@@ -250,11 +245,6 @@ public abstract class Usuario implements Serializable {
         return false;
     }
 
-    /**
-     * Se encarga de obtener la clave dentro de un HashCode
-     * 
-     * @return id.hashCode el número asociado a una clave
-     */
     @Override
     public int hashCode() {
         return id.hashCode();

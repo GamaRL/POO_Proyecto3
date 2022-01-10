@@ -84,9 +84,6 @@ public class Platillo implements Serializable {
         return descripcion;
     }
 
-    /**
-     * Sobrescritura del método toString para las propiedades del platillo
-     */
     @Override
     public String toString() {
         return nombre;

@@ -89,10 +89,6 @@ public class Mesa implements Serializable {
     orden = null;
   }
 
-  /**
-   * Sobreescritura del métdo toString, propiedades de la mesa
-   * (ocupada/desocupada)
-   */
   @Override
   public String toString() {
     return String.format("Mesa: %d (%s)", numMesa, ocupada ? "ocupada" : "desocupada");

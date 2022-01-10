@@ -9,8 +9,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.JOptionPane;
+
 /**
- * Clase que cumple con las funciones de la generación de un ticket. 
+ * Clase que cumple con las funciones de la generación de un ticket.
  */
 public class Ticket implements Serializable {
 
@@ -48,17 +49,19 @@ public class Ticket implements Serializable {
      * Si se pagó con efectivo o fue un pago con tarjeta
      */
     private boolean esPagoConEfectivo;
-/**
- * La hora y fecha del ticket generado
- */
+    /**
+     * La hora y fecha del ticket generado
+     */
     private LocalDateTime fechaHora;
-/**
- * Constructor de la clase ticket 
- * @param mesa que tiene las órdenes a registrar
- * @param propina monto dado por el usuario 
- * @param esPagoConEfectivo la forma de pago 
- */
-    public Ticket( Mesa mesa, double propina, boolean esPagoConEfectivo) {
+
+    /**
+     * Constructor de la clase ticket
+     * 
+     * @param mesa              que tiene las órdenes a registrar
+     * @param propina           monto dado por el usuario
+     * @param esPagoConEfectivo la forma de pago
+     */
+    public Ticket(Mesa mesa, double propina, boolean esPagoConEfectivo) {
         this.propina = propina;
         this.mesa = mesa.getNumeroMesa();
         this.orden = mesa.getOrden();
@@ -68,60 +71,80 @@ public class Ticket implements Serializable {
         fechaHora = LocalDateTime.now();
         generarTicket();
     }
-/**
- * Se encarga de guardar en un archivo de texto los datos relacionados con el ticket para así tener la 
- * información recopilada.
- */
-    private void generarTicket () {
-        try {
-          BufferedWriter escritor = new BufferedWriter( new FileWriter( new File("tickets/" + fechaHora.format( DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss") ) + " (" + orden.getId() + ").txt" ) ) );
-          escritor.append(String.valueOf(fechaHora.toString() + "\n"));
-          escritor.append(String.valueOf("Orden: "+ orden.getId() + "\n"));
-          escritor.append(String.valueOf("Servidor: "+ orden.getServidor().getNombre()) + "\n");
-          escritor.append(String.valueOf("Mesa: " + mesa) + "\n");
-          escritor.append(String.valueOf("Platillo: "+ orden.getPlatillos()) + "\n");
-          escritor.append(String.valueOf("Subtotal: "+ subtotal) + "\n");
-          escritor.append(String.valueOf("Total:" +total) + "\n");
-          escritor.append(String.valueOf("Pago " + (esPagoConEfectivo ? "en efectivo" : "con tarjeta") + "." ) + "\n");
-          escritor.close();
+
+    /**
+     * Se encarga de guardar en un archivo de texto los datos relacionados con el
+     * ticket para así tener la información recopilada.
+     */
+    private void generarTicket() {
+        File archivo = new File("tickets/" + fechaHora.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss")) + " ("
+                            + orden.getId() + ").txt");
+
+        try(BufferedWriter escritor = new BufferedWriter(new FileWriter(archivo))) {
+
+            escritor.append(String.format(" *** TICKET DE PAGO ***\n\n"));
+            escritor.append(fechaHora.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH-mm-ss")) + "\n\n");
+            escritor.append(String.valueOf("Orden: " + orden.getId() + "\n"));
+            escritor.append(String.valueOf("Servidor: " + orden.getServidor().getNombre()) + "\n");
+            escritor.append(String.valueOf("Mesa: " + mesa) + "\n");
+            escritor.append("\n");
+            for (Platillo p : orden.getPlatillos().keySet())
+                escritor.append(String.format(" - %d\t%s\t%f\n", orden.getPlatillos().get(p), p.getNombre(), p.getPrecio()));
+            escritor.append("\n");
+            escritor.append("-----------\n");
+            escritor.append(String.valueOf("Subtotal: " + subtotal) + "\n");
+            escritor.append(String.valueOf("Total:" + total) + "\n");
+            escritor.append(String.valueOf("Pago " + (esPagoConEfectivo ? "en efectivo" : "con tarjeta") + ".") + "\n");
+
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Algo salió mal con la generación del ticket.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Algo salió mal con la generación del ticket.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
-/**
- * Método de acceso para lectura del IVA
- * @return iva monto que se le asignó por defecto como IVA
- */
+
+    /**
+     * Método de acceso para lectura del IVA
+     * 
+     * @return iva monto que se le asignó por defecto como IVA
+     */
     public static double getIva() {
         return iva;
     }
-/**
- * Método de acceso para lectura de la propina proporcionada por el cliente
- * @return propina 
- */
+
+    /**
+     * Método de acceso para lectura de la propina proporcionada por el cliente
+     * 
+     * @return propina
+     */
     public double getPropina() {
         return propina;
     }
-/**
- * Método de acceso de lectura de la orden del cliente 
- * @return orden almacenada en la mesa 
- */
+
+    /**
+     * Método de acceso de lectura de la orden del cliente
+     * 
+     * @return orden almacenada en la mesa
+     */
     public Orden getOrden() {
         return orden;
     }
-/**
- * Método de acceso de lectura del total a pagar al finalizar la orden 
- * @return total monto en pesos del total a pagar 
- */
+
+    /**
+     * Método de acceso de lectura del total a pagar al finalizar la orden
+     * 
+     * @return total monto en pesos del total a pagar
+     */
     public double getTotal() {
         return total;
     }
-/**
- * Método de acceso de lectura de la forma de pago 
- * @return isEsPagoConEfectivo forma de pago (tarjeta/efectivo)
- */
+
+    /**
+     * Método de acceso de lectura de la forma de pago
+     * 
+     * @return isEsPagoConEfectivo forma de pago (tarjeta/efectivo)
+     */
     public boolean isEsPagoConEfectivo() {
         return esPagoConEfectivo;
-    }    
+    }
 }

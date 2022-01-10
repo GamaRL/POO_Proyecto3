@@ -40,9 +40,6 @@ class PlatillosComboBoxRenderer extends BasicComboBoxRenderer {
     this.restaurante = restaurante;
   }
 
-  /**
-   * 
-   */
   @Override
   public Component getListCellRendererComponent(JList<?> list, Object value,
       int index, boolean isSelected, boolean cellHasFocus) {
@@ -143,6 +140,15 @@ public class BusquedaPlatillos extends JPanel {
     });
 
     btnFinalizarOrden.addActionListener(e -> {
+
+      if (guiOrden.getOrden() == null) {
+        return;
+      }
+
+      if (guiOrden.getOrden().getPlatillos().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "No ha seleccionado algún platillo", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+      }
 
       if (!usuario.getId().equals(guiOrden.getOrden().getServidor().getId()))
         return;

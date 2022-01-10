@@ -23,6 +23,7 @@ import modelos.usuarios.Usuario;
  * las ventas por mesero y platillos
  */
 public class Estadisticas extends JPanel {
+
     /**
      * Restaurante del que se harán las estadísticas
      */
@@ -42,8 +43,7 @@ public class Estadisticas extends JPanel {
     /**
      * Método que realiza la creación de los componentes y características que tiene
      * la vista gráfica además de realizar los cálculos para obtener el mejor
-     * vendedor del mes
-     * así como el platillo más vendido
+     * vendedor del mes así como el platillo más vendido
      */
     public void crearComponentes() {
         removeAll();
@@ -76,13 +76,13 @@ public class Estadisticas extends JPanel {
         JLabel vendedor = new JLabel();
         vendedor.setText(texto);
         vendedor.setForeground(Color.BLUE);
-        //contenedor.add(new JLabel(texto));
         contenedor.add(vendedor);
         contenedor.add(Box.createVerticalStrut(20));
         contenedor.add(new JLabel("PLATILLOS"));
         contenedor.add(Box.createVerticalStrut(20));
 
         Map<Platillo, Integer> ventasPlatillos = AnalizadorEst.getEstadisticasPlatillos(restaurante);
+
         // Creación de la tabla a mostrar de los platillos
         JTable tablaPlatillos = new JTable();
         DefaultTableModel modeloPlatillos = new DefaultTableModel() {
