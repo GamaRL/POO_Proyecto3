@@ -275,4 +275,24 @@ objeto restaurante en un archivo de objetos. Los dos métodos con los que cuenta
     uso de un flujo de escritura.
 \end{itemize}
 
+En cuanto el manejo de las mesas y sus respectivas órdenes se utilizaron listas, conjuntos y mapas. En el
+objeto del restaurante se guardan las mesas en una lista y los platillos en un conjunto. En cada mesa se
+guarda una orden, y el objeto de la orden guarda un mapa de los platillos que pertenecen a ella ---donde la 
+clave es el platillo y el valor es la cantidad---. Se puede agregar, modificar la cantidad o eliminar un platillo
+de una orden mediante la interfaz. Una vez que se desea finalizar la orden para generar el ticket y liberar la mesa,
+se genera un objeto Ticket con la orden, la mesa y el usuario que la atendió para así poder guardarlo en la lista de
+objetos Ticket la cual será muy útil en las estadísticas. También se genera un archivo de texto con la información de
+la orden por cada orden finalizada. Una cosa importante que resaltar es que un mesero no puede atender una mesa que
+ya es atendida por otro mesero, por lo que no será posible hacerlo en la interfaz.
+
+Respecto a la lista de los tickets, es de importancia vital para las estadísticas y ventas. Como en esta lista se guardan
+todas las órdenes ya finalizadas ---que contienen los platillos consumidos, la mesa y el servidor---, de ella se puede
+recuperar la información (haciendo uso del repositorio correspondiente) para analizarla y mostrarla al usuario de una manera
+comprensible.
+
+Como se mencionó en la introducción, un administrador puede también crear y modificar perfiles de usuarios. Para ello, se hace
+uso del repositorio correspondiente a usuarios (\texttt{RepositorioUsuarios}), y más específico al método \texttt{updateUsuarios}
+el cual recibe la lista de usuarios, el usuario nuevo o modificado y un booleano indicando si es nuevo el usuario. Si es nuevo,
+lo agrega al final del archivo; en caso contrario, va comparando con los UUID de los demás usuarios hasta que coincida para
+escribir el modificado en vez del original.
 \pagebreak
