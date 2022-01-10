@@ -3,36 +3,74 @@
 % TODO: Hablar de forma adicional de las principales clases que se utilizaron de Swing
 % los patrones de diseño que se trataron de implmentar
 \subsubsection*{Interfaz gráfica}
-La clase \texttt{Box} fue clave en el acomodo de los elementos ya que permite la organización en la interfaz de estos mismos
-de una manera muy fácil y por medio de agruparlos en contendores llamados cajas.\\
 
-Estas son solo algunas de las clases utilizadas para construir los elementos en la GUI:
+La clase \texttt{Box} fue clave en el acomodo de los elementos ya que permite la organización en la interfaz de estos mismos
+de una manera muy fácil y por medio de agruparlos en contendores llamados cajas. Se pueden crear cajas verticales u
+horizontales de tal forma que los elementos se dispongan hacia los lados o de arriba hacia abajo.
+
+En general, para la implementación del proyecto se usaron las siguientes clases de \textit{Java Swing}. Estas son solo 
+algunas de las clases utilizadas para construir los elementos en la interfaz de usuario que se implementaron:
 
 \begin{itemize}
-    \item JFrame. Esta clase representa una ventana de una aplicación de escrito.
-    \item JPanel. Esta clase usualmente se utiliza como contenedor de elementos de una vista de la aplicación.
-    \item JScrollPane. Parecida a un JPanel, esta clase representa un contenedor que si su contenido es más grande que su tamaño
-    fijo, se podrá ver con ayuda de barras de desplazamiento tanto horizantal como vertical.
-    \item JButton. Esta clase representa un botón dentro de la aplicación. 
-    \item JComboBox. Esta clase representa un lista desplegable de opciones.
-    \item JLabel. Esta clase representa una etiqueta dentro de la aplicación.
-    \item JTextField. Esta clase representa una campo de texto donde el usuario puede escribir.
-    \item JCheckbox. Esta clase representa un opción que puede estar seleccionada o no mediante un cuadro.
-    \item JTable. Esta clase representa una tabla con datos.
-  \end{itemize}
+    \item \texttt{JFrame}. Esta clase representa una ventana de una aplicación de escrito.
+    \item \texttt{JPanel}. Esta clase usualmente se utiliza como contenedor de elementos de una vista de la aplicación, es uno 
+    del los contendores más simples que contiene Java.
+    \item \texttt{JScrollPane}. Parecida a un \texttt{JPanel}, esta clase representa un contenedor que si los elementos que contiene
+    son más grande que su tamaño fijo, se podrá ver con ayuda de barras de desplazamiento tanto horizantal como vertical.
+    \item \texttt{JButton}. Esta clase representa un botón dentro de la aplicación. 
+    \item \texttt{JComboBox}. Esta clase representa un lista desplegable de opciones.
+    \item \texttt{JLabel}. Esta clase representa una etiqueta dentro de la aplicación.
+    \item \texttt{JTextField}. Esta clase representa una campo de texto donde el usuario puede escribir.
+    \item \texttt{JCheckbox}. Esta clase representa un opción que puede estar seleccionada o no mediante un cuadro.
+    \item \texttt{JTable}. Esta clase representa una tabla con datos.
+\end{itemize}
 
-  Casi todas las anteriores clases, por no decir que todas, puede manejar eventos. Los eventos son acciones cuyo origen es provocado
-  por el usuario. Algunos ejemplos son:
+Casi todas las anteriores clases, por no decir que todas, pueden manejar eventos. Los eventos son acciones cuyo origen es provocado
+por el usuario. Algunos ejemplos son:
 
-  \begin{itemize}
-      \item Dar clic en un botón
-      \item Cambiar el contenido de una campo de texto
-      \item Seleccionar una opción de una lista
-  \end{itemize}
+\begin{itemize}
+    \item Dar clic en un botón.
+    \item Cambiar el contenido de una campo de texto
+    \item Seleccionar una opción de una lista
+\end{itemize}
 
-  Estos eventos pueden ser manejados con métodos propios de las clases que usualmente empiezan con \texttt{add} y terminan con
-  \texttt{Listener}. Dichos métodos pueden o no aceptar funciones \texttt{lambda}; en caso que no lo hagan, reciben instancias de clases
-  como \texttt{ActionListener} o parececidas.
+Estos eventos pueden ser manejados con métodos propios de las clases que usualmente empiezan con \texttt{add} y terminan con
+\texttt{Listener}. Dichos métodos pueden o no aceptar funciones \texttt{lambda}; en caso que no lo hagan, reciben instancias de clases
+como \texttt{ActionListener} o parececidas. Es importante destacar la utilización de expresiones \textit{lambda}, las cuales hicieron 
+mucho más fácil la creación de \textit{listeners} para los diversos eventos de los componentes. Por ejemplo, en la forma tradicional 
+---antes de la llegada de Java 8--- se tenía que hacer de la siguiente forma:
+
+\begin{lstlisting}{language=Java}
+btn.addActionListener( new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        e.getSource();
+    }
+} )
+\end{lstlisting}
+
+O incluso de formas mucho más complejas. Sin embargo, ahora se puede simplificar todo este código a través de lo siguiente:
+
+\begin{lstlisting}{language=Java}
+    btn.addActionListener( e -> {
+        e.getSource();
+    }) 
+\end{lstlisting}
+
+A la expresión que se forma con la punta de flecha (\texttt{->}) se le conoce como expresión lambda y básicamente puede 
+reemplazar a cualquier objeto que requiera implementar una interfaz que contenga un sólo método, todo lo que incluye dentro 
+de las llaves es la implementación del método de la interfaz. Como se puede ver, la sintáxis es mucho más amigable y se parece 
+mucho a la forma en la que trabajan mecanismos similares a los \textit{callback} o a la declaración de las funciones anónimas 
+en lenguajes como \textbf{PHP} o \textbf{JavaScript}.
+
+Las funciones \textit{lambda} abre las posibilidades a nuevos escenarios y tecnologías que se pueden aprender haciendo uso del 
+lenguaje de programación Java; por ejemplo: La \textit{Java Stream API}, a través de la cual se puede escalar la forma de trabajar 
+con el \textit{Java Collections Framework} y que ayuda a hacer filtros de información o ``mapeo'' de la misma, únicamente se puede 
+explorar a través de funciones \textit{lambda}. Junto con este tipo de expresiones viene todo un nuevo paradigma de programación llamado 
+programación funcional.
+
+En el presente trabajo no se abordará más acerca de este tipo de expresiones ya que se considera que no es su objetivo, pero sí era 
+importante enfatizar en que se hizo uso de ellas.
 
 \subsubsection*{Patrones de diseño}
 El patrón implememntado en nuestra solución fue el llamado \texttt{Singleton}. Dicho patrón consiste en que solo pueda existir una sola
