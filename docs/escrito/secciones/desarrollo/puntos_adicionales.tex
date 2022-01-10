@@ -2,3 +2,43 @@
 
 % TODO: Hablar de forma adicional de las principales clases que se utilizaron de Swing
 % los patrones de diseño que se trataron de implmentar
+\subsubsection*{Interfaz gráfica}
+La clase \texttt{Box} fue clave en el acomodo de los elementos ya que permite la organización en la interfaz de estos mismos
+de una manera muy fácil y por medio de agruparlos en contendores llamados cajas.\\
+
+Estas son solo algunas de las clases utilizadas para construir los elementos en la GUI:
+
+\begin{itemize}
+    \item JFrame. Esta clase representa una ventana de una aplicación de escrito.
+    \item JPanel. Esta clase usualmente se utiliza como contenedor de elementos de una vista de la aplicación.
+    \item JScrollPane. Parecida a un JPanel, esta clase representa un contenedor que si su contenido es más grande que su tamaño
+    fijo, se podrá ver con ayuda de barras de desplazamiento tanto horizantal como vertical.
+    \item JButton. Esta clase representa un botón dentro de la aplicación. 
+    \item JComboBox. Esta clase representa un lista desplegable de opciones.
+    \item JLabel. Esta clase representa una etiqueta dentro de la aplicación.
+    \item JTextField. Esta clase representa una campo de texto donde el usuario puede escribir.
+    \item JCheckbox. Esta clase representa un opción que puede estar seleccionada o no mediante un cuadro.
+    \item JTable. Esta clase representa una tabla con datos.
+  \end{itemize}
+
+  Casi todas las anteriores clases, por no decir que todas, puede manejar eventos. Los eventos son acciones cuyo origen es provocado
+  por el usuario. Algunos ejemplos son:
+
+  \begin{itemize}
+      \item Dar clic en un botón
+      \item Cambiar el contenido de una campo de texto
+      \item Seleccionar una opción de una lista
+  \end{itemize}
+
+  Estos eventos pueden ser manejados con métodos propios de las clases que usualmente empiezan con \texttt{add} y terminan con
+  \texttt{Listener}. Dichos métodos pueden o no aceptar funciones \texttt{lambda}; en caso que no lo hagan, reciben instancias de clases
+  como \texttt{ActionListener} o parececidas.
+
+\subsubsection*{Patrones de diseño}
+El patrón implememntado en nuestra solución fue el llamado \texttt{Singleton}. Dicho patrón consiste en que solo pueda existir una sola
+instancia de la clase y ésta esté almacenada como atributo de la clase. Fue implementado en la clase \texttt{VentanaApp}. Los pasos para implementar el patrón fueron:
+\begin{enumerate}
+    \item Establecer un atributo de la clase del mismo tipo que la misma
+    \item Establecer el modificador de acceso del constructor como \texttt{private}
+    \item Crear un método público estático, llamado \texttt{getInstancia}, que regresa el atributo creado en el paso 1.
+\end{enumerate}

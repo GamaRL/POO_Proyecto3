@@ -8,40 +8,10 @@ dos proyectos; estos dos últimos fueron fundamentales para la implementación d
 y patrones de diseño. Hicimos una sesión en concreto para definir nuestra jerarquía de clases y bosquejo debe
 cómo estaría organizado nuestra solución en Java.
 
-También se investigó acerca de interfaces gráficas en Java con \textt{Java Swing}. Con ayuda de doucmentación
+También se investigó acerca de interfaces gráficas en Java con \textt{Java Swing}. Con ayuda de documentación
 oficial y conocimientos previos acerca de dichas interfaces gráficas es cómo se pudo realizar nuestra visión de
 una interfaz amigable y accesible para el usuario. Toda esta parte fue hecha únicamente con código y no se uso La
 herramienta que ofrece algunos IDEs ,como Netbeans, para arrastrar elementos como botones e irlos acomodando gráficamente.
-La clase \texttt{Box} fue clave en el acomodo de los elementos ya que permite la organización en la interfaz de estos mismos
-de una manera muy fácil y por medio de agruparlos en contendores llamados cajas.
-
-Estas son solo algunas de las clases utilizadas para construir los elementos en la GUI:
-
-\begin{itemize}
-    \item JFrame. Esta clase representa una ventana de una aplicación de escrito.
-    \item JPanel. Esta clase usualmente se utiliza como contenedor de elementos de una vista de la aplicación.
-    \item JScrollPane. Parecida a un JPanel, esta clase representa un contenedor que si su contenido es más grande que su tamaño
-    fijo, se podrá ver con ayuda de barras de desplazamiento tanto horizantal como vertical.
-    \item JButton. Esta clase representa un botón dentro de la aplicación. 
-    \item JComboBox. Esta clase representa un lista desplegable de opciones.
-    \item JLabel. Esta clase representa una etiqueta dentro de la aplicación.
-    \item JTextField. Esta clase representa una campo de texto donde el usuario puede escribir.
-    \item JCheckbox. Esta clase representa un opción que puede estar seleccionada o no mediante un cuadro.
-    \item JTable. Esta clase representa una tabla con datos.
-  \end{itemize}
-
-  Casi todas las anteriores clases, por no decir que todas, puede manejar eventos. Los eventos son acciones cuyo origen es provocado
-  por el usuario. Algunos ejemplos son:
-
-  \begin{itemize}
-      \item Dar clic en un botón
-      \item Cambiar el contenido de una campo de texto
-      \item Seleccionar una opción de una lista
-  \end{itemize}
-
-  Estos eventos pueden ser manejados con métodos propios de las clases que usualmente empiezan con \texttt{add} y terminan con
-  \texttt{Listener}. Dichos métodos pueden o no aceptar funciones \texttt{lambda}; en caso que no lo hagan, reciben instancias de clases
-  como \texttt{ActionListener} o parececidas.
 
   Como equipo, decidimos utilizar \texttt{Visual Studio Code \(VS Code\)} para trabajar en el proyecto en vez de un IDE. Esto debido a no todo
   el equipo tenían los mismos IDEs; además fue porque es más ligero y personalizable. \texttt{Github} fue utilizado para poder colaborar
