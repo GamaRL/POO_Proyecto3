@@ -133,10 +133,10 @@ public class VentanaApp extends JFrame {
     setLocationRelativeTo(null);
     ImageIcon icon = new ImageIcon("imagenes/quesadilla.png");
     setIconImage(icon.getImage());
-    setTitle(restaurante.getNombre() + " - Iniciar sesión");
+    setTitle(restaurante.getNombre());
 
     setSize(400, 200);
-    //setResizable(false);
+    setResizable(false);
   }
 
   /**
