@@ -26,54 +26,66 @@ import repositorios.RepositorioUsuarios;
  * contiene un mesero
  */
 public class FormularioMesero extends JPanel {
+
   /**
    * Usuario a del cuál se obtendrá su información a recopilar
    */
   private Usuario usuario;
+
   /**
    * Se encarga de indicar si se debe editar un usuario o no
    */
   private boolean editar;
+
   /**
    * Permite el ingreso del nombre en el campo correspondiente
    */
   private JTextField campoNombre;
+
   /**
    * Permite el ingreso del teléfono asociado al usuario, en el campo
    * correspondiente
    */
   private JTextField campoTelefono;
+
   /**
    * Permite el ingreso del usuario a registrar en el campo correspondiente
    */
   private JTextField campoUsuario;
+
   /**
    * Permite el ingreso de la constraseña del usuario a registrar en el campo
    * correspondiente
    */
   private JPasswordField campoPassword;
+
   /**
    * Permite elegir 'hombre' como el sexo del usuario a registrar
    */
   private JRadioButton rBotonHombre;
+
   /**
    * Permite elegir 'mujer' como el sexo del usuario a registrar
    */
   private JRadioButton rBotonMujer;
+
   /**
    * Permite mostrar las diferentes opciones de sexo que puede elegir el
    * administrador al crear a un nuevo
    * usuario perteneciente al sistema del restaurante
    */
   private ButtonGroup grupoSexo;
+
   /**
    * Permite mostrar la contraseña digitalizada, correspondiente a un usuario
    */
   private JCheckBox mostrarPassword;
+
   /**
    * Permite que pueda escribir la fecha de nacimiento del usuario a registrar
    */
   private JTextField campoFecha;
+
   /**
    * Permite realizar la acción elegida
    */

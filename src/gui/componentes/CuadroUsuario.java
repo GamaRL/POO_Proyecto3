@@ -14,8 +14,7 @@ import modelos.usuarios.Usuario;
 
 /**
  * Clase que ayuda a mostrar las características de los usuarios asociados al
- * programa restaurante
- * Hereda de Box para utilizar sus funcionalidades
+ * programa restaurante. Hereda de 'Box' para utilizar sus funcionalidades
  */
 public class CuadroUsuario extends JPanel {
 

@@ -16,9 +16,11 @@ import repositorios.RepositorioUsuarios;
  * obtener las estadísticas por usuario y por platillos
  */
 public abstract class AnalizadorEst {
+
   /**
    * Monto total vendido
    */
+
   private static Double totalDinero;
   /**
    * Cantidad total de los platillos vendidos

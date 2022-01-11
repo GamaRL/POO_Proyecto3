@@ -17,30 +17,30 @@ import repositorios.Repositorio;
  */
 public class ManejadorUsuarios {
 
+  /**
+   * Se agregan usuarios al archivo de usuarios
+   */
+  public static void reescribirArchivo() {
+
+    if (new File(Repositorio.getRuta()).exists())
+      new File(Repositorio.getRuta()).mkdir();
+
+    List<Usuario> usuarios = new LinkedList<>();
+    usuarios.add(new Administrador("Sr Chef", LocalDate.parse("2001-11-24"), 'M', "55-1111-3300", "Chefsito", "123"));
+
     /**
-     * Se agregan usuarios al archivo de usuarios
+     * Manejo de excepciones por el manejo de archivos para los usuarios creados
      */
-    public static void reescribirArchivo() {
-
-        if (new File(Repositorio.getRuta()).exists())
-            new File(Repositorio.getRuta()).mkdir();
-
-        List<Usuario> usuarios = new LinkedList<>();
-        usuarios.add(new Administrador("Sr Chef", LocalDate.parse("2001-11-24"), 'M', "55-1111-3300", "Chefsito", "123"));
-
-        /**
-         * Manejo de excepciones por el manejo de archivos para los usuarios creados
-         */
-        try {
-            File ruta = new File(new File(Repositorio.getRuta()), Repositorio.ARCHIVO_USUARIOS);
-            ObjectOutputStream s = new ObjectOutputStream(new FileOutputStream(ruta));
-            for (Usuario usuario : usuarios) {
-                s.writeObject(usuario);
-            }
-            s.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    try {
+      File ruta = new File(new File(Repositorio.getRuta()), Repositorio.ARCHIVO_USUARIOS);
+      ObjectOutputStream s = new ObjectOutputStream(new FileOutputStream(ruta));
+      for (Usuario usuario : usuarios) {
+        s.writeObject(usuario);
+      }
+      s.close();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
 
 }

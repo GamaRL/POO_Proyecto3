@@ -16,8 +16,7 @@ import modelos.usuarios.Usuario;
 /**
  * Clase que tiene los métodos correspondientes para mostrar las ventas
  * realizadas en el restaurante. Hereda de JPanel para uitlizar los
- * métodos/funcionalidades de una vista
- * gráfica
+ * métodos/funcionalidades de una vista gráfica
  */
 public class Ventas extends JTabbedPane {
   // Atributo de tipo restaurante

@@ -68,18 +68,22 @@ class PlatillosComboBoxRenderer extends BasicComboBoxRenderer {
  * el restaurante
  */
 public class BusquedaPlatillos extends JPanel {
+
   /**
    * El restaurante asociado al sistema
    */
   private Restaurante restaurante;
+
   /**
    * El usuario que se encarga realizando la orden (mesero/administrador)
    */
   private Usuario usuario;
+
   /**
    * La orden de una mesa a realizar
    */
   private OrdenMesa guiOrden;
+
   /**
    * Componente que nos permite elegir un platillo de los mostrados
    */

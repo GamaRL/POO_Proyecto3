@@ -25,8 +25,15 @@ import modelos.Ticket;
 import modelos.usuarios.Usuario;
 import repositorios.RepositorioRestaurante;
 
+/**
+ * Clase que se encarga de desplegar un botón en lugar de texto dentro de una
+ * celda.
+ */
 class ButtonRenderer extends JButton implements TableCellRenderer {
 
+  /**
+   * Constructor de la clase
+   */
   public ButtonRenderer() {
     setOpaque(true);
 
@@ -44,11 +51,26 @@ class ButtonRenderer extends JButton implements TableCellRenderer {
   }
 }
 
+/**
+ * Se encarga de manejar la selección de un botón en la celda de la tabla.
+ */
 class ButtonEditor extends DefaultCellEditor {
 
+  /**
+   * El botón que se muestra
+   */
   protected JButton btn;
+
+  /**
+   * La etiqueta que se muestra
+   */
   private String label;
 
+  /**
+   * Constructor de la clase
+   * 
+   * @param txt
+   */
   public ButtonEditor(JTextField txt) {
     super(txt);
     btn = new JButton();
@@ -77,6 +99,10 @@ class ButtonEditor extends DefaultCellEditor {
   }
 }
 
+/**
+ * Representa el panel en el que se muestra la tabla con la información de la
+ * orden de la mesa.
+ */
 public class OrdenMesa extends JPanel {
 
   /**
@@ -124,6 +150,9 @@ public class OrdenMesa extends JPanel {
     crearTabla();
   }
 
+  /**
+   * Crea la tabla en la que se despliega la información
+   */
   public void crearTabla() {
     String[] identifier = { "Platillo", "Precio", "Cantidad", "Total", "Eliminar" };
 
@@ -213,6 +242,11 @@ public class OrdenMesa extends JPanel {
     VentanaApp.getInstancia().repaint();
   }
 
+  /**
+   * Agrega un platillo a la tabla.
+   * 
+   * @param platillo el platillo a agregar.
+   */
   public void agregarPlatillo(Platillo platillo) {
     if (platillo == null)
       return;
@@ -235,6 +269,11 @@ public class OrdenMesa extends JPanel {
     mesa.getOrden().agregarPlatillo(platillo);
   }
 
+  /**
+   * Método que se ejecuta cuando se finaliza la orden.
+   * 
+   * @return el ticket generado
+   */
   public Ticket finalizarOrden() {
     ((DefaultTableModel) tabla.getModel()).setRowCount(0);
     double propina;
@@ -248,14 +287,30 @@ public class OrdenMesa extends JPanel {
         "Método de pago", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION);
   }
 
+  /**
+   * Método de acceso de modificación para la mesa.
+   * 
+   * @param mesa la nueva mesa.
+   */
   public void setMesa(Mesa mesa) {
     this.mesa = mesa;
   }
 
+  /**
+   * Configuración del selector de mesas
+   * 
+   * @param conservarAnterior si se desea conservar la selección de la mesa
+   *                          anterior o no.
+   */
   public void configurarComboMesas(boolean conservarAnterior) {
     inicio.configurarComboMesas(conservarAnterior);
   }
 
+  /**
+   * Método de acceso de consulta a la orden asociada con la mesa.
+   * 
+   * @return la orden de la mesa.
+   */
   public Orden getOrden() {
     return mesa.getOrden();
   }

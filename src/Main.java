@@ -14,6 +14,8 @@ import repositorios.RepositorioRestaurante;
  * 
  * @author García Lemus, Rocío
  * @author Juárez Juárez, María José
+ * @author López Chong, Jorge Antonio
+ * @author Ríos Lira, Gamaliel
  */
 public class Main {
 

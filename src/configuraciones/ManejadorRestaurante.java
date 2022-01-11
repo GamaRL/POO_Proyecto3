@@ -11,10 +11,10 @@ import repositorios.Repositorio;
 
 /**
  * Clase que contiene la configuración inicial para crear un archivo que
- * contenga la
- * información del restaurante (nombre, número de mesas y platillos).
+ * contenga la información del restaurante (nombre, número de mesas y platillos).
  */
 public class ManejadorRestaurante {
+
   /**
    * Métodos que establece los platillos con sus características (nombre, precio y
    * descripción)
