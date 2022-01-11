@@ -11,9 +11,10 @@ El proyecto fue desarrollado en el entorno de desarrollo `Visual Studio Code`. S
 En caso de que no se cuente con este IDE, se puede proceder de la siguiente manera:
 
 1. Dirigirse al directorio del proyecto
+3. Entrar en el directorio `src/`
 2. Ejecutar el comando:
 ```bash
-javac src/Main.java -sourcepath src/ -d out
+javac Main.java -d out
 ```
 
 3. Posteriormente, para ejecutar el proyecto, se debe ejecutar el siguiente comando:
